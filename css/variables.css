@@ -1,0 +1,61 @@
+@property --grad-x {
+    syntax: '<percentage>';
+    inherits: true;
+    initial-value: 0%;
+}
+
+@property --grad-y {
+    syntax: '<percentage>';
+    inherits: true;
+    initial-value: 0%;
+}
+
+@property --drift-x {
+    syntax: '<percentage>';
+    inherits: true;
+    initial-value: 0%;
+}
+
+@property --drift-y {
+    syntax: '<percentage>';
+    inherits: true;
+    initial-value: 0%;
+}
+
+:root {
+    /* Paleta de marca */
+    --color-primary: #CA6484;      /* rosa - dominante */
+    --color-sky: #9DD4DB;          /* celeste */
+    --color-yellow: #F5F09E;       /* amarillo pastel */
+    --color-pink-light: #F6B7C3;   /* rosa claro */
+    --color-white: #FFFFFF;
+    --color-text-dark: #2B2B2B;
+
+    /* Tipografías */
+    --font-heading: 'Arsenica', serif;
+    --font-subheading: 'Delicate Elegance', cursive;
+    --font-body: 'Poppins', sans-serif;
+
+    /* Fondo animado compartido (hero -> categorías), controlado por scroll via JS */
+    --grad-x: 0%;
+    --grad-y: 0%;
+    --stop-sky: 35%;
+    --stop-primary: 75%;
+    --stop-pink: 100%;
+}
+
+@keyframes bg-drift {
+    0%   { --drift-x: 0%; --drift-y: 0%; }
+    50%  { --drift-x: 6%; --drift-y: 5%; }
+    100% { --drift-x: 0%; --drift-y: 0%; }
+}
+
+body {
+    animation: bg-drift 16s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body {
+        animation: none;
+    }
+}

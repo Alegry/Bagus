@@ -1,0 +1,33 @@
+.bagus-trust-bar {
+    padding: 48px 0;
+    background: var(--color-white);
+    border-bottom: 1px solid rgba(0, 0, 0, .06);
+}
+
+.trust-bar-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}
+
+.trust-bar-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-text-dark);
+    white-space: nowrap;
+}
+
+.trust-bar-icon {
+    font-size: 18px;
+    line-height: 1;
+}
+
+@media (max-width: 768px) {
+    .trust-bar-container {
+        gap: 20px 28px;
+    }
+}

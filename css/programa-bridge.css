@@ -1,0 +1,28 @@
+.bagus-programa-bridge {
+    background: var(--color-primary);
+    text-align: center;
+}
+
+.programa-bridge-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bagus-programa-bridge .section-title,
+.bagus-programa-bridge .section-intro {
+    color: var(--color-white);
+}
+
+.bagus-programa-bridge .section-title {
+    max-width: 720px;
+}
+
+.bagus-programa-bridge .section-intro {
+    max-width: 560px;
+}
+
+.bagus-programa-bridge .btn-primary {
+    background: var(--color-white);
+    color: var(--color-primary);
+}

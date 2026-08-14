@@ -1,0 +1,15 @@
+.bagus-kit-teaser {
+    background: var(--color-pink-light);
+    text-align: center;
+}
+
+.kit-teaser-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bagus-kit-teaser .section-intro {
+    margin-left: auto;
+    margin-right: auto;
+}

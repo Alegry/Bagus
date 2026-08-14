@@ -1,0 +1,42 @@
+.hero {
+    background: radial-gradient(circle at calc(var(--grad-x) + var(--drift-x)) calc(var(--grad-y) + var(--drift-y)) in oklch,
+        var(--color-yellow) 0%,
+        var(--color-sky) var(--stop-sky),
+        var(--color-primary) var(--stop-primary),
+        var(--color-pink-light) var(--stop-pink)
+    );
+    min-height: 90vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 40px 80px;
+}
+
+.hero-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.hero-text {
+    width: max-content;
+    max-width: 100%;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: clamp(60px, 10vw, 140px);
+    color: var(--color-white);
+    line-height: 1;
+    margin: 0;
+}
+
+.hero-subtitle {
+    font-family: var(--font-subheading);
+    font-size: clamp(28px, 4vw, 44px);
+    color: var(--color-white);
+    margin: -8px 0 0;
+    width: 100%;
+    text-align: justify;
+    text-align-last: justify;
+}

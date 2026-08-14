@@ -1,0 +1,24 @@
+.bagus-manifiesto-resumen {
+    background: var(--color-sky);
+    text-align: center;
+}
+
+.manifiesto-resumen-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.manifiesto-quote {
+    font-family: var(--font-heading);
+    font-size: clamp(24px, 3vw, 36px);
+    line-height: 1.4;
+    color: var(--color-white);
+    max-width: 780px;
+    margin: 0 0 32px;
+}
+
+.bagus-manifiesto-resumen .btn-outline {
+    color: var(--color-white);
+    border-color: var(--color-white);
+}
