@@ -21,6 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 <?php wp_body_open(); ?>
 
+<div class="site-bg" aria-hidden="true"></div>
+
 <header class="header">
 
     <div class="container header-container">

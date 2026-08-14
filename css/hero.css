@@ -1,10 +1,5 @@
 .hero {
-    background: radial-gradient(circle at calc(var(--grad-x) + var(--drift-x)) calc(var(--grad-y) + var(--drift-y)) in oklch,
-        var(--color-yellow) 0%,
-        var(--color-sky) var(--stop-sky),
-        var(--color-primary) var(--stop-primary),
-        var(--color-pink-light) var(--stop-pink)
-    );
+    background: transparent; /* el degradado vive en .site-bg, ver global.css */
     min-height: 90vh;
     display: flex;
     align-items: flex-end;

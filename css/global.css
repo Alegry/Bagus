@@ -18,11 +18,28 @@ h1, h2, h3, h4 {
     padding: 0 40px;
 }
 
+/* Fondo compartido: un solo elemento fijo detrás de todo el sitio,      */
+/* así hero + secciones que lo usan (ver shop-categories.css) se ven     */
+/* como un único degradado continuo, sin costuras entre secciones.       */
+.site-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(circle at calc(var(--grad-x) + var(--drift-x)) calc(var(--grad-y) + var(--drift-y)) in oklch,
+        var(--color-yellow) 0%,
+        var(--color-sky) var(--stop-sky),
+        var(--color-primary) var(--stop-primary),
+        var(--color-pink-light) var(--stop-pink)
+    );
+}
+
 .section {
     padding: 100px 0;
 }
 
 .section-title {
+    font-family: var(--font-heading) !important;
+    font-weight: 400 !important;
     font-size: clamp(30px, 3.6vw, 46px);
     color: var(--color-text-dark);
     line-height: 1.15;

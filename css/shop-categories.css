@@ -1,10 +1,5 @@
 .bagus-shop-categories {
-    background: radial-gradient(circle at calc(var(--grad-x) + var(--drift-x)) calc(var(--grad-y) + var(--drift-y)) in oklch,
-        var(--color-yellow) 0%,
-        var(--color-sky) var(--stop-sky),
-        var(--color-primary) var(--stop-primary),
-        var(--color-pink-light) var(--stop-pink)
-    );
+    background: transparent; /* el degradado vive en .site-bg, ver global.css */
 }
 
 .bagus-shop-categories .section-title {
@@ -27,17 +22,16 @@
     min-height: 420px;
     padding: 32px 20px;
     border-radius: 160px;
-    background: rgba(255, 255, 255, .12);
-    border: 1px solid rgba(255, 255, 255, .35);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid rgba(255, 255, 255, .18);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .06);
     text-decoration: none;
     transition: transform .35s ease, background .35s ease;
 }
 
 .shop-category-card:hover {
     transform: translateY(-6px);
-    background: rgba(255, 255, 255, .2);
+    background: rgba(255, 255, 255, .12);
 }
 
 .shop-category-label {
