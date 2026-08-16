@@ -1,15 +1,161 @@
+/* "Escenario" más alto que la pantalla: mientras se scrollea a través de */
+/* este espacio extra, la sección de adentro queda pegada (sticky) y ese  */
+/* scroll de más es lo que empuja la animación en vez de mover la página. */
+.kit-teaser-scroll-stage {
+    position: relative;
+    height: 260vh;
+    /* Categorías termina con 100px de padding vacío (.section); sin esto  */
+    /* el freno del scroll recién llega después de cruzar ese espacio en   */
+    /* blanco. Lo tiramos para arriba para que enganche justo al final de  */
+    /* las tarjetas, con un margen chico.                                  */
+    margin-top: -130px;
+}
+
+@media (max-width: 768px) {
+    .kit-teaser-scroll-stage {
+        margin-top: -84px;
+    }
+}
+
 .bagus-kit-teaser {
-    background: var(--color-pink-light);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
     text-align: center;
 }
 
+/* Todo lo de abajo está atado 1:1 al scroll vía variables CSS que pone   */
+/* kit-teaser.js en cada frame (--kt-*): primero termina de entrar el     */
+/* fondo, recién después salen signos y texto (ver mapRange en el JS).    */
+
+.kit-teaser-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(180deg, var(--color-yellow) 0%, var(--color-sky) 100%);
+    /* Máscara circular invertida: un "agujero" redondo en el centro deja  */
+    /* ver el fondo de categorías detrás; ese agujero se va cerrando desde */
+    /* las esquinas/bordes hacia el centro hasta que no queda nada.        */
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent var(--kt-bg-hole, 100%), #000 calc(var(--kt-bg-hole, 100%) + 1%));
+    mask-image: radial-gradient(circle at 50% 50%, transparent var(--kt-bg-hole, 100%), #000 calc(var(--kt-bg-hole, 100%) + 1%));
+}
+
+.kit-teaser-mark {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    font-family: var(--font-heading);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--color-text-dark);
+    pointer-events: none;
+    user-select: none;
+    opacity: var(--kt-mark-opacity, 0);
+}
+
+.kit-teaser-mark--open {
+    left: 14%;
+    font-size: clamp(300px, 42vw, 720px);
+    /* -50% centra la caja sobre top:50% (si no, queda anclada por su borde */
+    /* superior y no por el centro); el resto es la animación por scroll.   */
+    transform: translateY(calc(-50% + var(--kt-mark-open-y, -180%)));
+}
+
+.kit-teaser-mark--close {
+    right: 14%;
+    font-size: clamp(300px, 42vw, 720px);
+    transform: translateY(calc(-50% + var(--kt-mark-close-y, 180%)));
+}
+
 .kit-teaser-container {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.bagus-kit-teaser .section-title {
+    font-size: clamp(42px, 5.6vw, 74px) !important;
+    color: #fff;
+    /* Difference contra el degradado claro da un tono oscuro legible;      */
+    /* contra los signos (negros) da blanco puro — el texto "cambia de      */
+    /* color" automáticamente donde se cruza con ellos.                     */
+    mix-blend-mode: difference;
+    opacity: var(--kt-title-opacity, 0);
+    transform: translateY(var(--kt-title-y, 32px));
+}
+
 .bagus-kit-teaser .section-intro {
     margin-left: auto;
     margin-right: auto;
+    opacity: var(--kt-intro-opacity, 0);
+    transform: translateY(var(--kt-intro-y, 32px));
+}
+
+.kit-teaser-cta {
+    display: inline-block;
+    font-family: var(--font-subheading);
+    font-size: clamp(20px, 2.4vw, 26px);
+    color: var(--color-text-dark);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    opacity: var(--kt-cta-opacity, 0);
+    transform: translateY(var(--kt-cta-y, 32px));
+    transition: opacity .3s ease;
+}
+
+.kit-teaser-cta:hover {
+    opacity: .7;
+}
+
+@media (max-width: 640px) {
+    .kit-teaser-mark--open,
+    .kit-teaser-mark--close {
+        font-size: clamp(200px, 58vw, 360px);
+    }
+
+    .bagus-kit-teaser .section-title {
+        font-size: clamp(34px, 9vw, 52px) !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .kit-teaser-scroll-stage {
+        height: auto;
+    }
+
+    .bagus-kit-teaser {
+        position: relative;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .kit-teaser-bg {
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .kit-teaser-mark {
+        opacity: 1;
+    }
+
+    .kit-teaser-mark--open {
+        transform: translateY(-65%);
+    }
+
+    .kit-teaser-mark--close {
+        transform: translateY(-35%);
+    }
+
+    .bagus-kit-teaser .section-title,
+    .bagus-kit-teaser .section-intro,
+    .kit-teaser-cta {
+        opacity: 1;
+        transform: none;
+    }
 }

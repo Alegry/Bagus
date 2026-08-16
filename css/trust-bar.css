@@ -1,33 +1,84 @@
 .bagus-trust-bar {
-    padding: 48px 0;
-    background: var(--color-white);
-    border-bottom: 1px solid rgba(0, 0, 0, .06);
+    background: transparent; /* comparte el degradado de .site-bg con el hero y las categorías */
+    padding: 64px 0 80px;
 }
 
 .trust-bar-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     gap: 40px;
 }
 
+.trust-bar-item:nth-child(1) { --stagger: 0s; }
+.trust-bar-item:nth-child(2) { --stagger: .12s; }
+.trust-bar-item:nth-child(3) { --stagger: .12s; }
+.trust-bar-item:nth-child(4) { --stagger: 0s; }
+
 .trust-bar-item {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 10px;
-    font-family: var(--font-body);
-    font-size: 14px;
-    color: var(--color-text-dark);
-    white-space: nowrap;
+    flex: 1 1 200px;
+    gap: 20px;
+    text-align: center;
+    opacity: 0;
+    transition:
+        opacity .8s cubic-bezier(.16, .84, .44, 1) var(--stagger, 0s),
+        transform .8s cubic-bezier(.16, .84, .44, 1) var(--stagger, 0s);
+}
+
+.trust-bar-item:nth-child(-n+2) {
+    transform: translateX(-56px);
+}
+
+.trust-bar-item:nth-child(n+3) {
+    transform: translateX(56px);
+}
+
+.trust-bar-item.is-visible {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .trust-bar-icon {
-    font-size: 18px;
-    line-height: 1;
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
 }
 
-@media (max-width: 768px) {
+.trust-bar-label {
+    font-family: var(--font-body);
+    font-size: 19px;
+    line-height: 1.35;
+    color: var(--color-white);
+}
+
+.trust-bar-label span {
+    display: block;
+}
+
+@media (max-width: 900px) {
     .trust-bar-container {
-        gap: 20px 28px;
+        justify-content: center;
+        gap: 32px 24px;
+    }
+
+    .trust-bar-item {
+        flex: 1 1 40%;
+    }
+}
+
+@media (max-width: 480px) {
+    .trust-bar-item {
+        flex: 1 1 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .trust-bar-item {
+        opacity: 1;
+        transform: none;
+        transition: none;
     }
 }

@@ -26,7 +26,7 @@ function bagus_child_enqueue_assets() {
     }
 
     // JS por sección
-    $js_files = array( 'header', 'hero' );
+    $js_files = array( 'header', 'hero', 'trust-bar', 'kit-teaser', 'shop-categories' );
     foreach ( $js_files as $file ) {
         $path = "/js/{$file}.js";
         $full_path = get_stylesheet_directory() . $path;

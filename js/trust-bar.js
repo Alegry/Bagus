@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    var cards = document.querySelectorAll('.shop-category-card');
-    if (!cards.length) return;
+    var items = document.querySelectorAll('.trust-bar-item');
+    if (!items.length) return;
 
     if (!('IntersectionObserver' in window)) {
-        cards.forEach(function (card) {
-            card.classList.add('is-visible');
+        items.forEach(function (item) {
+            item.classList.add('is-visible');
         });
         return;
     }
@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', function () {
         rootMargin: '0px 0px -10% 0px'
     });
 
-    cards.forEach(function (card) {
-        observer.observe(card);
+    items.forEach(function (item) {
+        observer.observe(item);
     });
 
 });

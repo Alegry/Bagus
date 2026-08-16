@@ -44,14 +44,20 @@
     --stop-pink: 100%;
 }
 
+/* Movimiento continuo tipo "olas": el centro del degradado recorre un */
+/* camino ondulado, sin depender del scroll (ver hero.js para la parte */
+/* que sí reacciona al scroll: --grad-x/--grad-y y los --stop-*).      */
 @keyframes bg-drift {
-    0%   { --drift-x: 0%; --drift-y: 0%; }
-    50%  { --drift-x: 6%; --drift-y: 5%; }
-    100% { --drift-x: 0%; --drift-y: 0%; }
+    0%   { --drift-x: 0%;   --drift-y: 0%; }
+    20%  { --drift-x: 26%;  --drift-y: -17%; }
+    40%  { --drift-x: 12%;  --drift-y: 23%; }
+    60%  { --drift-x: -23%; --drift-y: 14%; }
+    80%  { --drift-x: -14%; --drift-y: -21%; }
+    100% { --drift-x: 0%;   --drift-y: 0%; }
 }
 
 body {
-    animation: bg-drift 16s ease-in-out infinite;
+    animation: bg-drift 15s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

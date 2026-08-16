@@ -6,16 +6,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!header) return;
 
-    var SCROLL_THRESHOLD = 80;
+    var DEFAULT_THRESHOLD = 80;
+    var isHome = document.body.classList.contains('home');
+    var scrolledThreshold = DEFAULT_THRESHOLD;
+
+    function computeThreshold() {
+        if (isHome) {
+            // Sigue transparente/blanco a través de hero, trust-bar, categorías
+            // y kit-teaser (que ahora es un "escenario" alto por el scroll
+            // pegado); recién después de eso el header pasa a fondo blanco.
+            var lightZoneEnd = document.querySelector('.kit-teaser-scroll-stage') || document.querySelector('.bagus-shop-categories');
+            if (lightZoneEnd) {
+                var rect = lightZoneEnd.getBoundingClientRect();
+                scrolledThreshold = rect.bottom + window.scrollY - header.offsetHeight;
+                return;
+            }
+        }
+        scrolledThreshold = DEFAULT_THRESHOLD;
+    }
 
     function updateHeader() {
-        if (window.scrollY > SCROLL_THRESHOLD) {
+        if (window.scrollY > scrolledThreshold) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
     }
 
+    computeThreshold();
+    window.addEventListener('load', computeThreshold);
+    window.addEventListener('resize', computeThreshold);
     window.addEventListener('scroll', updateHeader, { passive: true });
     updateHeader();
 
