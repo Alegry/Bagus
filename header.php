@@ -21,6 +21,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 <?php wp_body_open(); ?>
 
+<div class="site-preloader" id="site-preloader" aria-hidden="true">
+    <img class="site-preloader-mark" src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/logo.svg' ); ?>" alt="">
+    <p class="site-preloader-phrase"></p>
+</div>
+<noscript><style>.site-preloader{display:none;}</style></noscript>
+
 <div class="site-bg" aria-hidden="true"></div>
 
 <header class="header">

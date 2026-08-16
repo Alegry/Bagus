@@ -11,14 +11,39 @@
 
 .manifiesto-quote {
     font-family: var(--font-heading);
-    font-size: clamp(24px, 3vw, 36px);
-    line-height: 1.4;
+    font-size: clamp(30px, 4.2vw, 46px);
+    line-height: 1.35;
     color: var(--color-white);
-    max-width: 780px;
+    max-width: 860px;
     margin: 0 0 32px;
+    opacity: 0;
+    transform: translateY(48px);
+    transition: opacity .9s cubic-bezier(.16, .84, .44, 1), transform .9s cubic-bezier(.16, .84, .44, 1);
 }
 
 .bagus-manifiesto-resumen .btn-outline {
     color: var(--color-white);
     border-color: var(--color-white);
+    opacity: 0;
+    transform: scale(.7);
+    transition: opacity .6s cubic-bezier(.16, .84, .44, 1) .35s, transform .6s cubic-bezier(.16, .84, .44, 1) .35s;
+}
+
+.bagus-manifiesto-resumen.is-visible .manifiesto-quote {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.bagus-manifiesto-resumen.is-visible .btn-outline {
+    opacity: 1;
+    transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .manifiesto-quote,
+    .bagus-manifiesto-resumen .btn-outline {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }

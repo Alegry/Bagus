@@ -6,7 +6,7 @@
 
 .footer-container {
     display: grid;
-    grid-template-columns: 1.4fr repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 40px;
     padding-bottom: 60px;
 }
@@ -34,24 +34,29 @@
     opacity: 1;
 }
 
-.footer-logo {
-    height: 28px;
-    filter: brightness(0) invert(1);
-    margin-bottom: 12px;
-}
-
-.footer-brand p {
-    font-family: var(--font-subheading);
-    font-size: 18px;
-    color: rgba(255, 255, 255, .7);
-    margin: 0;
-}
-
 .footer-note {
     font-family: var(--font-body);
     font-size: 13px;
     color: rgba(255, 255, 255, .6);
     margin: 4px 0 0;
+}
+
+.footer-social-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.footer-newsletter-title {
+    margin-top: 4px;
+}
+
+.footer-newsletter-copy {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: rgba(255, 255, 255, .6);
+    margin: 0 0 16px;
 }
 
 .footer-newsletter-form {
@@ -86,6 +91,32 @@
     cursor: pointer;
 }
 
+.footer-trust-mini {
+    border-top: 1px solid rgba(255, 255, 255, .12);
+}
+
+.footer-trust-mini-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px 44px;
+    padding: 28px 0;
+}
+
+.footer-trust-mini-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: rgba(255, 255, 255, .7);
+}
+
+.footer-trust-mini-item img {
+    width: 28px;
+    height: 28px;
+}
+
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, .15);
     padding: 24px 0;
@@ -108,6 +139,7 @@
 
 .footer-legal {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -122,6 +154,32 @@
     color: var(--color-white);
 }
 
+/* Remate visual: tagline + wordmark gigante sobre el degradado de marca */
+.footer-outro {
+    background: linear-gradient(180deg, var(--color-pink-light) 0%, var(--color-sky) 100%);
+    padding: 56px 0 24px;
+    overflow: hidden;
+}
+
+.footer-outro-tagline {
+    font-family: var(--font-subheading);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--color-white);
+    margin: 0;
+}
+
+.footer-outro-wordmark {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: clamp(90px, 15vw, 240px);
+    line-height: .82;
+    color: var(--color-white);
+    margin: 8px 0 0;
+    padding-left: 40px;
+    white-space: nowrap;
+}
+
 @media (max-width: 900px) {
     .footer-container {
         grid-template-columns: repeat(2, 1fr);
@@ -131,5 +189,10 @@
 @media (max-width: 560px) {
     .footer-container {
         grid-template-columns: 1fr;
+    }
+
+    .footer-outro-wordmark {
+        padding-left: 20px;
+        font-size: clamp(64px, 22vw, 140px);
     }
 }
