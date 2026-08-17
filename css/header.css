@@ -86,33 +86,61 @@ HEADER
 .nav-right {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 32px;
 }
 
 .nav-left {
     grid-column: 1;
     grid-row: 1;
     justify-self: end;
-    margin-right: 48px;
+    margin-right: 56px;
 }
 
 .nav-right {
     grid-column: 3;
     grid-row: 1;
     justify-self: start;
-    margin-left: 48px;
+    margin-left: 56px;
 }
 
-.nav a {
-    font-family: var(--font-subheading);
-    font-size: 18px;
-    letter-spacing: .02em;
+.nav a,
+.nav-dropdown-toggle {
+    position: relative;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .03em;
     text-decoration: none;
-    transition: opacity .3s ease;
 }
 
-.nav a:hover {
-    opacity: .6;
+/* Subrayado que se dibuja de izquierda a derecha en vez de un simple      */
+/* fade de opacidad — usa currentColor para heredar el blanco/oscuro que   */
+/* ya resuelve .header (ver reglas de arriba) sin duplicar esa lógica.     */
+.nav a::after,
+.nav-dropdown-toggle::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -3px;
+    height: 1px;
+    background: currentColor;
+    transition: right .35s cubic-bezier(.65, 0, .35, 1);
+}
+
+.nav a:hover::after,
+.nav-dropdown-toggle:hover::after,
+.nav-dropdown.is-open .nav-dropdown-toggle::after {
+    right: 0;
+}
+
+.nav a:focus-visible,
+.nav-dropdown-toggle:focus-visible,
+.logo:focus-visible,
+.menu-toggle:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+    border-radius: 2px;
 }
 
 /* DROPDOWN TIENDA */
@@ -125,14 +153,12 @@ HEADER
     border: none;
     padding: 0;
     color: inherit;
-    font-family: var(--font-subheading);
-    font-size: 18px;
-    letter-spacing: .02em;
     cursor: pointer;
 }
 
 .nav-dropdown-menu {
-    display: none;
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 100%;
     left: 0;
@@ -142,17 +168,34 @@ HEADER
     background: var(--color-white);
     box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
     border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity .25s ease, transform .3s cubic-bezier(.16, .84, .44, 1), visibility .25s ease;
 }
 
 .nav-dropdown.is-open .nav-dropdown-menu {
-    display: flex;
-    flex-direction: column;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
 .nav-dropdown-menu a {
     color: var(--color-text-dark) !important;
     padding: 8px 20px;
     white-space: nowrap;
+}
+
+.nav-dropdown-menu a::after {
+    left: 20px;
+    right: calc(100% - 20px);
+    bottom: 2px;
+}
+
+.nav-dropdown-menu a:hover::after {
+    right: 20px;
 }
 
 /* MENU TOGGLE (solo mobile) */
@@ -208,7 +251,8 @@ HEADER
 
     .nav a {
         color: var(--color-white) !important;
-        font-size: 20px;
+        font-size: 19px;
+        font-weight: 500;
     }
 
     .nav-dropdown {
@@ -219,7 +263,8 @@ HEADER
 
     .nav-dropdown-toggle {
         color: var(--color-white);
-        font-size: 20px;
+        font-size: 19px;
+        font-weight: 500;
     }
 
     .nav-dropdown-menu {
@@ -236,6 +281,16 @@ HEADER
         padding: 0;
     }
 
+    .nav-dropdown-menu a::after {
+        left: 0;
+        right: 100%;
+        bottom: -3px;
+    }
+
+    .nav-dropdown-menu a:hover::after {
+        right: 0;
+    }
+
     .menu-toggle {
         display: block;
         grid-column: 3;
@@ -243,5 +298,14 @@ HEADER
         justify-self: end;
         position: relative;
         z-index: 9999;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nav a::after,
+    .nav-dropdown-toggle::after,
+    .nav-dropdown-menu,
+    .nav {
+        transition: none;
     }
 }

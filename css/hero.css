@@ -17,6 +17,35 @@
     max-width: 100%;
 }
 
+.hero-title,
+.hero-subtitle,
+.hero-ctas {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .9s cubic-bezier(.16, .84, .44, 1), transform .9s cubic-bezier(.16, .84, .44, 1);
+}
+
+/* La entrada recién arranca cuando el preloader se va (ver preloader.js)  */
+/* — si no, se juega tapada y nunca se ve. Título, subtítulo y CTAs entran */
+/* escalonados para dar ritmo en vez de aparecer todos juntos.             */
+body.preloader-done .hero-title {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: .1s;
+}
+
+body.preloader-done .hero-subtitle {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: .3s;
+}
+
+body.preloader-done .hero-ctas {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: .45s;
+}
+
 .hero-title {
     font-family: var(--font-heading);
     font-weight: 400;
@@ -44,25 +73,52 @@
 
 .hero-ctas {
     display: flex;
-    align-items: baseline;
-    gap: 28px;
+    align-items: center;
+    gap: 24px;
     flex-wrap: wrap;
 }
 
 .hero-cta {
-    font-family: var(--font-subheading);
-    font-size: clamp(20px, 2.4vw, 26px);
-    font-weight: 400;
-    letter-spacing: .02em;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .03em;
     color: var(--color-white);
     text-decoration: underline;
     text-underline-offset: 4px;
     white-space: nowrap;
-    transition: opacity .3s ease;
+    transition: transform .3s cubic-bezier(.16, .84, .44, 1), text-underline-offset .3s ease;
 }
 
 .hero-cta:hover {
-    opacity: .7;
+    transform: translateY(-2px);
+    text-underline-offset: 7px;
+}
+
+.hero-cta:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+    border-radius: 2px;
+}
+
+/* "Explorar la tienda" es la intención de compra directa — se le da peso  */
+/* de botón real; "Descubre tu kit ideal" queda como link secundario de    */
+/* descubrimiento, mismo tratamiento que el resto de links del sitio.      */
+.hero-cta--primary {
+    background: var(--color-white);
+    color: var(--color-text-dark) !important;
+    padding: 14px 30px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: transform .3s cubic-bezier(.16, .84, .44, 1);
+}
+
+.hero-cta--primary:hover {
+    transform: translateY(-3px);
+}
+
+.hero-cta--primary:focus-visible {
+    outline-offset: 3px;
 }
 
 @media (max-width: 640px) {
@@ -70,5 +126,22 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-title,
+    .hero-subtitle,
+    .hero-ctas,
+    .hero-cta,
+    .hero-cta--primary {
+        transition: none;
+    }
+
+    .hero-title,
+    .hero-subtitle,
+    .hero-ctas {
+        opacity: 1;
+        transform: none;
     }
 }

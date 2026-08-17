@@ -12,13 +12,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function computeThreshold() {
         if (isHome) {
-            // Sigue transparente/blanco a través de hero, trust-bar, categorías
-            // y kit-teaser (que ahora es un "escenario" alto por el scroll
-            // pegado); recién después de eso el header pasa a fondo blanco.
-            var lightZoneEnd = document.querySelector('.kit-teaser-scroll-stage') || document.querySelector('.bagus-shop-categories');
+            // Sigue transparente/blanco a través de todo el home (hero, trust-bar,
+            // categorías, kit-teaser, manifiesto, programa-bridge, testimonials);
+            // recién al llegar a la sección del blog el header pasa a fondo blanco.
+            var lightZoneEnd = document.querySelector('.bagus-blog-preview');
             if (lightZoneEnd) {
                 var rect = lightZoneEnd.getBoundingClientRect();
-                scrolledThreshold = rect.bottom + window.scrollY - header.offsetHeight;
+                scrolledThreshold = rect.top + window.scrollY - header.offsetHeight;
                 return;
             }
         }

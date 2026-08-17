@@ -15,6 +15,11 @@
     display: block;
     text-decoration: none;
     color: var(--color-text-dark);
+    /* Estado inicial de la cascada atada al scroll (ver js/blog.js): cada   */
+    /* tarjeta entra desde un lado distinto, no todas juntas ni con el       */
+    /* mismo wipe/enfoque que testimonials o programa-bridge.                */
+    opacity: 0;
+    will-change: opacity, transform;
 }
 
 .blog-preview-thumb {
@@ -52,5 +57,12 @@
 @media (max-width: 900px) {
     .blog-preview-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .blog-preview-card {
+        opacity: 1;
+        transform: none;
     }
 }

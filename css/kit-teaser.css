@@ -99,18 +99,26 @@
 
 .kit-teaser-cta {
     display: inline-block;
-    font-family: var(--font-subheading);
-    font-size: clamp(20px, 2.4vw, 26px);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .03em;
     color: var(--color-text-dark);
     text-decoration: underline;
     text-underline-offset: 4px;
     opacity: var(--kt-cta-opacity, 0);
     transform: translateY(var(--kt-cta-y, 32px));
-    transition: opacity .3s ease;
+    transition: text-underline-offset .3s ease;
 }
 
 .kit-teaser-cta:hover {
-    opacity: .7;
+    text-underline-offset: 7px;
+}
+
+.kit-teaser-cta:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+    border-radius: 2px;
 }
 
 @media (max-width: 640px) {

@@ -1,41 +1,77 @@
+/* Bloque de color en vez de blanco, continuando la narrativa cromática    */
+/* que arranca en manifiesto-resumen (sky) y baja a rosa en programa-      */
+/* bridge — y sin envolver las citas en cards: texto editorial directo     */
+/* sobre el color, separado por una línea fina en vez de una caja.         */
 .bagus-testimonials {
-    background: var(--color-white);
+    background: var(--color-pink-light);
     text-align: center;
+}
+
+.bagus-testimonials .section-title {
+    color: var(--color-text-dark);
 }
 
 .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 48px;
+    gap: 48px;
+    margin-top: 56px;
     text-align: left;
 }
 
 .testimonial-card {
     margin: 0;
-    padding: 32px;
-    background: var(--color-white);
-    border: 1px solid rgba(0, 0, 0, .08);
-    border-radius: 16px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    /* Estado inicial: "cortina" cerrada — js/testimonials.js recalcula esto */
+    /* en cada evento de scroll (no en un frame throttleado ni con una       */
+    /* transición de duración fija), así que sube y baja al ritmo real del  */
+    /* scroll, en cualquier dirección.                                      */
+    clip-path: inset(0 0 100% 0);
+    will-change: clip-path, transform;
+}
+
+.testimonial-card + .testimonial-card {
+    border-left: 1px solid rgba(43, 43, 43, .18);
+    padding-left: 32px;
 }
 
 .testimonial-card p {
     font-family: var(--font-heading);
-    font-size: 18px;
-    line-height: 1.5;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.4;
     color: var(--color-text-dark);
-    margin: 0 0 16px;
+    margin: 0 0 20px;
 }
 
 .testimonial-card cite {
     font-family: var(--font-body);
     font-style: normal;
     font-size: 13px;
-    color: rgba(43, 43, 43, .6);
+    font-weight: 500;
+    letter-spacing: .02em;
+    color: rgba(43, 43, 43, .65);
 }
 
 @media (max-width: 900px) {
     .testimonials-grid {
         grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .testimonial-card + .testimonial-card {
+        border-left: none;
+        border-top: 1px solid rgba(43, 43, 43, .18);
+        padding-left: 0;
+        padding-top: 40px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .testimonial-card {
+        clip-path: none;
+        transform: none;
     }
 }

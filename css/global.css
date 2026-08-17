@@ -56,6 +56,7 @@ h1, h2, h3, h4 {
 }
 
 .btn {
+    position: relative;
     display: inline-block;
     font-family: var(--font-body);
     font-size: 14px;
@@ -64,22 +65,60 @@ h1, h2, h3, h4 {
     text-decoration: none;
     padding: 16px 34px;
     border-radius: 999px;
-    transition: transform .25s ease, opacity .25s ease;
+    transition: transform .35s cubic-bezier(.16, .84, .44, 1), letter-spacing .35s ease, box-shadow .35s ease, background-color .35s ease;
 }
 
 .btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    letter-spacing: .05em;
+}
+
+.btn:active {
+    transform: translateY(-1px);
 }
 
 .btn-primary {
     background: var(--color-primary);
     color: var(--color-white);
+    overflow: hidden;
+}
+
+/* Barrido de color desde la izquierda en vez de un simple cambio de       */
+/* fondo: el pseudo-elemento va en z-index:-1, así queda siempre detrás    */
+/* del texto (contenido en flujo normal) sin necesitar envolverlo en spans.*/
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--color-text-dark);
+    transform: translateX(-100%);
+    transition: transform .45s cubic-bezier(.65, 0, .35, 1);
+}
+
+.btn-primary:hover::after {
+    transform: translateX(0);
 }
 
 .btn-outline {
     background: transparent;
     color: var(--color-text-dark);
     border: 1.5px solid var(--color-text-dark);
+}
+
+/* Relleno tenue con el propio color del botón (currentColor): funciona    */
+/* igual sin importar el contexto (texto oscuro sobre blanco, texto        */
+/* blanco sobre un fondo de color), a diferencia de invertir a un color    */
+/* fijo que podría chocar con el fondo de la sección.                      */
+.btn-outline:hover {
+    background: color-mix(in oklch, currentColor 14%, transparent);
+    box-shadow: inset 0 0 0 1.5px currentColor;
+}
+
+.btn:focus-visible,
+.btn-outline:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
 }
 
 @media (max-width: 768px) {
@@ -89,5 +128,19 @@ h1, h2, h3, h4 {
 
     .section {
         padding: 64px 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn,
+    .btn:hover,
+    .btn-primary::after,
+    .btn-primary:hover::after {
+        transition: none;
+    }
+
+    .btn:hover {
+        transform: none;
+        letter-spacing: .02em;
     }
 }

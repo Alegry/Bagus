@@ -146,6 +146,10 @@ function hidePreloaderWhenReady(preloader) {
 }
 
 function hidePreloader(preloader) {
+    // Marca en <body> para que otras secciones (ver .hero-title/.hero-subtitle/
+    // .hero-ctas en hero.css) puedan animar su entrada recién cuando el
+    // preloader se va, en vez de jugarse esa animación mientras todavía está tapada.
+    document.body.classList.add('preloader-done');
     preloader.classList.add('is-hidden');
     preloader.addEventListener('transitionend', function () {
         preloader.remove();

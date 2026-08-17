@@ -5,7 +5,9 @@
 
         <p class="section-intro">Descubre el Programa BAGUS de Bioindividualidad: acompañamiento personalizado para llevarlo al siguiente nivel.</p>
 
-        <a href="<?php echo esc_url( home_url( '/programa-bioindividualidad' ) ); ?>" class="btn btn-primary">Conocer el Programa</a>
+        <div class="programa-bridge-cta-wrap">
+            <a href="<?php echo esc_url( home_url( '/programa-bioindividualidad' ) ); ?>" class="btn btn-primary">Conocer el Programa</a>
+        </div>
 
     </div>
 </section>

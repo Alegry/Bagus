@@ -1,0 +1,143 @@
+/* WooCommerce — primera pasada de dirección de arte sobre el catálogo y  */
+/* la tarjeta de producto. Todavía no hay overrides de template propios    */
+/* (ver auditoría), así que esto apunta a las clases estándar que ya       */
+/* renderiza WooCommerce/Kadence por defecto, siguiendo la misma jerarquía */
+/* tipográfica y el mismo lenguaje de botón/hover del resto del sitio.     */
+
+.woocommerce ul.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 40px 32px;
+    margin: 0 0 64px;
+    padding: 0;
+    list-style: none;
+}
+
+.woocommerce ul.products li.product {
+    position: relative;
+    margin: 0;
+    text-align: left;
+}
+
+.woocommerce ul.products li.product a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.woocommerce ul.products li.product a img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 6px;
+    background: var(--color-sky);
+    transition: transform .5s cubic-bezier(.16, .84, .44, 1);
+}
+
+.woocommerce ul.products li.product:hover a img {
+    transform: scale(1.04);
+}
+
+.woocommerce ul.products li.product a:focus-visible img {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.25;
+    color: var(--color-text-dark);
+    margin: 18px 0 4px;
+}
+
+.woocommerce ul.products li.product .price {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.woocommerce ul.products li.product .price del {
+    color: rgba(43, 43, 43, .45);
+    font-weight: 400;
+    text-decoration: line-through;
+    margin-right: 8px;
+}
+
+.woocommerce ul.products li.product .price ins {
+    text-decoration: none;
+}
+
+.woocommerce ul.products li.product .button {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .03em;
+    text-decoration: none;
+    padding: 12px 26px;
+    border-radius: 999px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    cursor: pointer;
+    transition: transform .3s cubic-bezier(.16, .84, .44, 1);
+}
+
+.woocommerce ul.products li.product .button:hover {
+    transform: translateY(-2px);
+}
+
+.woocommerce ul.products li.product .button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+.woocommerce span.onsale {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .03em;
+    background: var(--color-yellow);
+    color: var(--color-text-dark);
+    padding: 5px 12px;
+    border-radius: 999px;
+    text-transform: none;
+    min-height: 0;
+    min-width: 0;
+    line-height: 1;
+}
+
+/* Estado del catálogo sin productos cargados todavía — para que no se      */
+/* vea como un aviso roto de WordPress por defecto mientras se carga stock. */
+.woocommerce-info {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-text-dark);
+    background: var(--color-pink-light);
+    border: none;
+    border-radius: 12px;
+    padding: 24px 28px;
+    max-width: 640px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .woocommerce ul.products li.product a img,
+    .woocommerce ul.products li.product .button {
+        transition: none;
+    }
+
+    .woocommerce ul.products li.product:hover a img {
+        transform: none;
+    }
+}
