@@ -29,7 +29,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Fase 1: un agujero circular (deja ver el degradado de categorías)
         // se va cerrando desde los bordes/esquinas hacia el centro.
-        var bgHole = mapRange(progress, 0, .45, 100, 0);
+        // -2 en vez de 0: dos stops negativos garantizan que el mask quede
+        // 100% opaco en el centro; en 0 quedaba un borde residual de 1% (el
+        // "+1%" del CSS) siempre transparente, visible como un punto de color.
+        var bgHole = mapRange(progress, 0, .45, 100, -2);
 
         // Fase 2: recién cuando el fondo terminó, salen signos y texto
         var markOpen = mapRange(progress, .45, .68, -180, -15);

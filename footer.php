@@ -4,56 +4,55 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 <footer class="footer">
 
-    <div class="container footer-container">
+    <div class="container footer-nav">
 
-        <div class="footer-col">
-            <h4>Explorar</h4>
-            <a href="<?php echo esc_url( function_exists( 'wc_get_page_id' ) ? get_permalink( wc_get_page_id( 'shop' ) ) : home_url( '/tienda' ) ); ?>">Tienda</a>
-            <a href="<?php echo esc_url( home_url( '/product-category/alimentacion-consciente' ) ); ?>">Alimentación Consciente</a>
-            <a href="<?php echo esc_url( home_url( '/product-category/bienestar-suplementacion' ) ); ?>">Bienestar &amp; Suplementación</a>
-            <a href="<?php echo esc_url( home_url( '/product-category/cuidado-personal-limpio' ) ); ?>">Cuidado Personal Limpio</a>
-            <a href="<?php echo esc_url( home_url( '/comprar-por-objetivo' ) ); ?>">Comprar por Objetivo (Kits)</a>
+        <div class="footer-group">
+            <h4 class="footer-group-label">Categorías</h4>
+            <div class="footer-group-divider"></div>
+            <div class="footer-group-links">
+                <a href="<?php echo esc_url( function_exists( 'wc_get_page_id' ) ? get_permalink( wc_get_page_id( 'shop' ) ) : home_url( '/tienda' ) ); ?>">Tienda</a>
+                <a href="<?php echo esc_url( home_url( '/product-category/alimentacion-consciente' ) ); ?>">Alimentación Consciente</a>
+                <a href="<?php echo esc_url( home_url( '/product-category/bienestar-suplementacion' ) ); ?>">Bienestar &amp; Suplementación</a>
+                <a href="<?php echo esc_url( home_url( '/product-category/cuidado-personal-limpio' ) ); ?>">Cuidado Personal</a>
+                <a href="<?php echo esc_url( home_url( '/comprar-por-objetivo' ) ); ?>">Comprar por Objetivo (Kits)</a>
+            </div>
         </div>
 
-        <div class="footer-col">
-            <h4>BAGUS</h4>
-            <a href="<?php echo esc_url( home_url( '/programa-bioindividualidad' ) ); ?>">Programa de Bioindividualidad</a>
-            <a href="<?php echo esc_url( home_url( '/manifiesto' ) ); ?>">Nuestro Manifiesto</a>
-            <a href="<?php echo esc_url( home_url( '/blog' ) ); ?>">Blog</a>
-            <a href="<?php echo esc_url( home_url( '/faq' ) ); ?>">Preguntas Frecuentes</a>
+        <div class="footer-group">
+            <h4 class="footer-group-label">Bagus</h4>
+            <div class="footer-group-divider"></div>
+            <div class="footer-group-links">
+                <a href="<?php echo esc_url( home_url( '/manifiesto' ) ); ?>">Nuestro Manifiesto</a>
+                <a href="<?php echo esc_url( home_url( '/programa-bioindividualidad' ) ); ?>">Programa de Bioindividualidad</a>
+                <a href="<?php echo esc_url( home_url( '/blog' ) ); ?>">Blog</a>
+                <a href="<?php echo esc_url( home_url( '/faq' ) ); ?>">Preguntas Frecuentes</a>
+            </div>
         </div>
 
-        <div class="footer-col">
-            <h4>Contacto</h4>
-            <!-- TODO: reemplazar por el número real, formato https://wa.me/57XXXXXXXXXX -->
-            <a href="https://wa.me/57XXXXXXXXXX" class="footer-whatsapp" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
-            <!-- TODO: reemplazar por el correo real de contacto -->
-            <a href="mailto:hola@bagus.co">hola@bagus.co — placeholder</a>
-            <!-- TODO: confirmar horario de atención, o si es 100% asíncrono -->
-            <p class="footer-note">Horario de atención — placeholder</p>
-            <p class="footer-note">Envíos en Bucaramanga y alrededores</p>
+        <div class="footer-group">
+            <h4 class="footer-group-label">Contacto y Envíos</h4>
+            <div class="footer-group-divider"></div>
+            <div class="footer-group-links">
+                <!-- TODO: reemplazar por el correo real de contacto -->
+                <a href="mailto:hola@bagus.co">Contacto</a>
+                <!-- TODO: reemplazar por el número real, formato https://wa.me/57XXXXXXXXXX -->
+                <a href="https://wa.me/57XXXXXXXXXX" target="_blank" rel="noopener">WhatsApp</a>
+                <a href="<?php echo esc_url( home_url( '/contacto' ) ); ?>">Envíos en Bucaramanga</a>
+            </div>
         </div>
 
-        <div class="footer-col footer-social-newsletter">
-            <h4>Síguenos</h4>
-            <!-- TODO: reemplazar por el @handle real de Instagram -->
-            <a href="https://instagram.com/bagus" class="footer-social-link" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-                    <circle cx="12" cy="12" r="4.2"></circle>
-                    <circle cx="17.4" cy="6.6" r="1"></circle>
-                </svg>
-                <span>@bagus — placeholder</span>
-            </a>
-            <!-- TODO: agregar Facebook / TikTok aquí si la marca los va a usar -->
-
-            <h4 class="footer-newsletter-title">Newsletter</h4>
-            <p class="footer-newsletter-copy">Recetas, tips y lanzamientos — sin spam, solo lo bueno.</p>
-            <!-- TODO: conectar a un proveedor real (Mailchimp, Klaviyo, Brevo, etc.) -->
-            <form class="footer-newsletter-form">
-                <input type="email" placeholder="Tu correo" required>
-                <button type="submit">Suscribirme</button>
-            </form>
+        <div class="footer-group footer-group-social">
+            <h4 class="footer-group-label">Síguenos</h4>
+            <div class="footer-group-divider"></div>
+            <div class="footer-group-links">
+                <!-- TODO: reemplazar por el @handle real de Instagram -->
+                <a href="https://instagram.com/bagus" target="_blank" rel="noopener">Instagram</a>
+                <!-- TODO: conectar a un proveedor real (Mailchimp, Klaviyo, Brevo, etc.) -->
+                <form class="footer-newsletter-form">
+                    <input type="email" placeholder="Tu correo" required>
+                    <button type="submit">Suscribirme</button>
+                </form>
+            </div>
         </div>
 
     </div>
@@ -98,9 +97,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
     <div class="footer-outro">
         <div class="container">
-            <p class="footer-outro-tagline">"Conecta con lo bueno."</p>
+            <p class="footer-outro-tagline">&quot;Conecta con lo bueno.&quot;</p>
         </div>
-        <p class="footer-outro-wordmark">BAGUS</p>
+        <img class="footer-outro-logo" src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/LOGOTIPO.svg' ); ?>" alt="BAGUS" loading="lazy">
     </div>
 
 </footer>

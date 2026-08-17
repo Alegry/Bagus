@@ -10,10 +10,29 @@
 }
 
 .site-preloader-mark {
-    width: clamp(140px, 16vw, 220px);
+    width: clamp(220px, 42vw, 460px);
     height: auto;
     display: block;
-    animation: site-preloader-pulse 1.6s ease-in-out infinite;
+}
+
+.site-preloader-mark svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    /* Evita depender de "height: 100%" del propio SVG (indeterminado sobre  */
+    /* un contenedor con height:auto); con aspect-ratio el alto siempre sale */
+    /* directo del viewBox del logo, sin importar qué tan viejo esté cacheado */
+    /* algún otro estilo.                                                     */
+    aspect-ratio: 3205 / 825;
+    overflow: visible;
+}
+
+/* El color/relleno se fuerza también desde JS al inicializar cada path   */
+/* (el SVG original trae stroke:#000 inline, con mayor especificidad que  */
+/* estas reglas), pero se deja acá como base/fallback.                    */
+.site-preloader-mark path {
+    fill: none;
+    stroke: var(--color-primary);
 }
 
 .site-preloader-phrase {
@@ -30,11 +49,6 @@
     color: var(--color-text-dark);
 }
 
-@keyframes site-preloader-pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(.86); opacity: .55; }
-}
-
 .site-preloader.is-hidden {
     opacity: 0;
     visibility: hidden;
@@ -43,7 +57,7 @@
 
 @media (max-width: 640px) {
     .site-preloader-mark {
-        width: clamp(110px, 34vw, 180px);
+        width: clamp(200px, 70vw, 340px);
     }
 
     .site-preloader-phrase {
@@ -52,10 +66,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .site-preloader-mark {
-        animation: none;
-    }
-
     .site-preloader {
         transition: opacity .3s ease;
     }
