@@ -109,6 +109,7 @@ HEADER
     font-family: var(--font-body);
     font-size: 14px;
     font-weight: 500;
+    line-height: 1;
     letter-spacing: .03em;
     text-decoration: none;
 }
@@ -151,9 +152,22 @@ HEADER
 .nav-dropdown-toggle {
     background: none;
     border: none;
+    margin: 0;
     padding: 0;
     color: inherit;
     cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Firefox mete un padding interno invisible en los botones (vía              */
+/* ::-moz-focus-inner) que `padding: 0` no logra quitar del todo — sin esto   */
+/* "Tienda" queda unos px más abajo que el resto de links del nav.            */
+.nav-dropdown-toggle::-moz-focus-inner {
+    border: 0;
+    padding: 0;
 }
 
 .nav-dropdown-menu {

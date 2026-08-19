@@ -1,0 +1,493 @@
+/* ==== PRÓXIMAMENTE (mientras el Programa no está activo) ==== */
+.programa-coming-soon {
+    padding: 200px 0 120px;
+    background: linear-gradient(180deg, var(--color-pink-light) 0%, var(--color-primary) 100%);
+    text-align: center;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+}
+
+.programa-coming-soon .page-hero-eyebrow {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--color-white);
+    opacity: .85;
+    margin-bottom: 20px;
+}
+
+.programa-coming-soon .page-hero-title {
+    font-family: var(--font-heading) !important;
+    font-weight: 400 !important;
+    font-size: clamp(44px, 6vw, 76px);
+    color: var(--color-white);
+    margin: 0 0 20px;
+}
+
+.programa-coming-soon .page-hero-subtitle {
+    font-family: var(--font-subheading);
+    font-size: clamp(20px, 2.4vw, 28px);
+    color: var(--color-white);
+    max-width: 620px;
+    margin: 0 auto 36px;
+}
+
+.programa-coming-soon .btn-outline {
+    color: var(--color-white);
+    border-color: var(--color-white);
+}
+
+/* Acceso interno: deliberadamente discreto, no debe leerse como una       */
+/* función pensada para la visitante final.                                */
+.programa-unlock {
+    max-width: 360px;
+    margin: 56px auto 0;
+    text-align: left;
+}
+
+.programa-unlock summary {
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, .65);
+    text-align: center;
+    cursor: pointer;
+    list-style: none;
+}
+
+.programa-unlock summary::-webkit-details-marker {
+    display: none;
+}
+
+.programa-unlock summary:hover {
+    color: rgba(255, 255, 255, .9);
+}
+
+.programa-unlock-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.programa-unlock-form input[type="password"] {
+    flex: 1;
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, .4);
+    background: rgba(255, 255, 255, .12);
+    color: var(--color-white);
+}
+
+.programa-unlock-form input[type="password"]::placeholder {
+    color: rgba(255, 255, 255, .6);
+}
+
+.programa-unlock-form button {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, .6);
+    background: transparent;
+    color: var(--color-white);
+    cursor: pointer;
+}
+
+.programa-unlock-error {
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    color: var(--color-white);
+    background: rgba(0, 0, 0, .2);
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin: 10px 0 0;
+}
+
+@media (max-width: 640px) {
+    .programa-coming-soon {
+        padding: 150px 0 90px;
+    }
+}
+
+/* ==== HERO ==== */
+.page-programa-hero {
+    padding: 168px 0 80px;
+    background: linear-gradient(180deg, var(--color-pink-light) 0%, var(--color-primary) 100%);
+    text-align: center;
+}
+
+.page-programa-hero .page-hero-eyebrow {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--color-white);
+    opacity: .85;
+    margin-bottom: 20px;
+}
+
+.page-programa-hero .page-hero-title {
+    font-family: var(--font-heading) !important;
+    font-weight: 400 !important;
+    font-size: clamp(38px, 5.4vw, 64px);
+    color: var(--color-white);
+    max-width: 900px;
+    margin: 0 auto 20px;
+    line-height: 1.15;
+}
+
+.page-programa-hero .page-hero-subtitle {
+    font-family: var(--font-subheading);
+    font-size: clamp(20px, 2.4vw, 28px);
+    color: var(--color-white);
+    max-width: 640px;
+    margin: 0 auto 40px;
+}
+
+.page-programa-hero .btn-primary {
+    background: var(--color-white);
+    color: var(--color-primary);
+}
+
+/* ==== QUÉ ES / QUÉ NO ES ==== */
+.programa-what {
+    background: var(--color-white);
+}
+
+.programa-what-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 40px;
+}
+
+.programa-what-card {
+    padding: 36px;
+    border-radius: 20px;
+}
+
+.programa-what-card--is {
+    background: color-mix(in oklch, var(--color-sky) 24%, white);
+}
+
+.programa-what-card--isnot {
+    background: color-mix(in oklch, var(--color-pink-light) 30%, white);
+}
+
+.programa-what-card h3 {
+    font-family: var(--font-body) !important;
+    font-weight: 600 !important;
+    font-size: 15px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--color-text-dark);
+    margin: 0 0 20px;
+}
+
+.programa-what-card ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.programa-what-card li {
+    font-family: var(--font-body);
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--color-text-dark);
+    padding-left: 24px;
+    position: relative;
+}
+
+.programa-what-card--is li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.programa-what-card--isnot li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: rgba(43, 43, 43, .5);
+    font-weight: 700;
+}
+
+/* ==== PARA QUIÉN ES ==== */
+.programa-audience {
+    background: var(--color-sky);
+    text-align: center;
+}
+
+.programa-audience .section-title,
+.programa-audience p {
+    color: var(--color-white);
+}
+
+.programa-audience p {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+/* ==== FASES ==== */
+.programa-phases {
+    background: var(--color-white);
+}
+
+.programa-phases-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    margin-top: 48px;
+    counter-reset: fase;
+}
+
+.programa-phase {
+    position: relative;
+    padding-top: 28px;
+    border-top: 2px solid var(--color-pink-light);
+}
+
+.programa-phase-number {
+    counter-increment: fase;
+    font-family: var(--font-heading);
+    font-size: 40px;
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: 14px;
+    display: block;
+}
+
+.programa-phase-number::before {
+    content: counter(fase, decimal-leading-zero);
+}
+
+.programa-phase h3 {
+    font-family: var(--font-body) !important;
+    font-weight: 600 !important;
+    font-size: 17px;
+    color: var(--color-text-dark);
+    margin: 0 0 10px;
+}
+
+.programa-phase p {
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: rgba(43, 43, 43, .75);
+    margin: 0;
+}
+
+/* ==== QUÉ INCLUYE ==== */
+.programa-includes {
+    background: color-mix(in oklch, var(--color-pink-light) 35%, white);
+}
+
+.programa-includes-list {
+    list-style: none;
+    margin: 40px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 32px;
+}
+
+.programa-includes-list li {
+    font-family: var(--font-body);
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--color-text-dark);
+    padding-left: 28px;
+    position: relative;
+}
+
+.programa-includes-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-primary);
+}
+
+.programa-includes-note {
+    margin: 28px 0 0;
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    font-style: italic;
+    color: rgba(43, 43, 43, .6);
+}
+
+/* ==== INVERSIÓN ==== */
+.programa-investment {
+    background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-sky) 100%);
+    text-align: center;
+}
+
+.programa-investment .section-title {
+    color: var(--color-white);
+}
+
+.programa-investment-card {
+    max-width: 480px;
+    margin: 40px auto 0;
+    padding: 44px 40px;
+    background: var(--color-white);
+    border-radius: 24px;
+}
+
+.programa-investment-price {
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 3.4vw, 38px);
+    color: var(--color-text-dark);
+    margin: 0 0 12px;
+}
+
+.programa-investment-card p {
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: rgba(43, 43, 43, .7);
+    margin: 0 0 24px;
+}
+
+.programa-investment-card p:last-child {
+    margin-bottom: 0;
+}
+
+/* ==== TESTIMONIOS ==== */
+.programa-testimonials {
+    background: var(--color-white);
+}
+
+/* ==== FAQ ==== */
+.programa-faq {
+    background: color-mix(in oklch, var(--color-sky) 18%, white);
+}
+
+.programa-faq-list {
+    max-width: 780px;
+    margin: 40px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.programa-faq-item {
+    background: var(--color-white);
+    border-radius: 14px;
+    padding: 6px 28px;
+}
+
+.programa-faq-item summary {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--color-text-dark);
+    padding: 18px 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.programa-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.programa-faq-item summary::after {
+    content: '+';
+    font-family: var(--font-heading);
+    font-size: 22px;
+    color: var(--color-primary);
+    flex-shrink: 0;
+    transition: transform .3s ease;
+}
+
+.programa-faq-item[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.programa-faq-item p {
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: rgba(43, 43, 43, .75);
+    margin: 0 0 22px;
+}
+
+/* ==== CTA AGENDAMIENTO ==== */
+.programa-agenda {
+    background: var(--color-text-dark);
+    text-align: center;
+}
+
+.programa-agenda .section-title {
+    color: var(--color-white);
+}
+
+.programa-agenda .section-intro {
+    color: rgba(255, 255, 255, .7);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.programa-agenda .btn-primary {
+    background: var(--color-white);
+    color: var(--color-text-dark);
+}
+
+/* ==== CONSENTIMIENTO ==== */
+.programa-consent {
+    background: var(--color-white);
+    text-align: center;
+    padding: 40px 0 60px;
+}
+
+.programa-consent p {
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    color: rgba(43, 43, 43, .6);
+}
+
+.programa-consent a {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+@media (max-width: 900px) {
+    .programa-what-grid,
+    .programa-phases-list {
+        grid-template-columns: 1fr;
+    }
+
+    .programa-includes-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .page-programa-hero {
+        padding: 140px 0 60px;
+    }
+}

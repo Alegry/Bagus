@@ -16,6 +16,7 @@ function bagus_child_enqueue_assets() {
     'header',
     'hero', 'trust-bar', 'kit-teaser', 'shop-categories',
     'manifiesto-resumen', 'programa-bridge', 'testimonials', 'blog',
+    'programa', 'manifiesto', 'contacto', 'blog-archive', 'blog-single',
     'footer',
     );
     foreach ( $css_files as $file ) {
@@ -27,7 +28,7 @@ function bagus_child_enqueue_assets() {
     }
 
     // JS por sección
-    $js_files = array( 'preloader', 'header', 'hero', 'trust-bar', 'kit-teaser', 'shop-categories', 'manifiesto-resumen', 'programa-bridge', 'testimonials', 'blog' );
+    $js_files = array( 'preloader', 'header', 'hero', 'trust-bar', 'kit-teaser', 'shop-categories', 'manifiesto-resumen', 'programa-bridge', 'testimonials', 'blog', 'reveal' );
     foreach ( $js_files as $file ) {
         $path = "/js/{$file}.js";
         $full_path = get_stylesheet_directory() . $path;
@@ -104,3 +105,24 @@ function bagus_rename_posts_menu() {
     }
 }
 add_action( 'admin_menu', 'bagus_rename_posts_menu', 999 );
+
+/**
+ * Los 4 pilares de contenido del blog (ver instrucciones-ia-paginas-bagus.md),
+ * creados como categorías nativas de WordPress si aún no existen, para que
+ * el filtro de la página Blog / Recursos siempre tenga a dónde apuntar.
+ */
+function bagus_register_blog_pillars() {
+    $pillars = array(
+        'como-leer-etiquetas'          => 'Cómo leer etiquetas',
+        'bioindividualidad'            => 'Qué es la bioindividualidad',
+        'mitos-del-greenwashing'       => 'Mitos del greenwashing',
+        'habitos-simples-de-bienestar' => 'Hábitos simples de bienestar',
+    );
+
+    foreach ( $pillars as $slug => $name ) {
+        if ( ! term_exists( $slug, 'category' ) ) {
+            wp_insert_term( $name, 'category', array( 'slug' => $slug ) );
+        }
+    }
+}
+add_action( 'init', 'bagus_register_blog_pillars', 21 );

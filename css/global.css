@@ -121,6 +121,20 @@ h1, h2, h3, h4 {
     outline-offset: 3px;
 }
 
+/* Utilidad genérica de entrada al scroll para páginas internas (ver        */
+/* js/reveal.js) — a diferencia del home, estas secciones son de contenido */
+/* editorial y no necesitan una animación a medida por sección.            */
+.reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity .8s cubic-bezier(.16, .84, .44, 1), transform .8s cubic-bezier(.16, .84, .44, 1);
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 0 20px;
@@ -142,5 +156,11 @@ h1, h2, h3, h4 {
     .btn:hover {
         transform: none;
         letter-spacing: .02em;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
     }
 }
