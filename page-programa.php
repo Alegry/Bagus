@@ -259,4 +259,3 @@ get_header();
 </main>
 
 <?php get_footer(); ?>
-//Quiero ver si se actualiza
