@@ -47,9 +47,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
                     <div class="nav-dropdown-menu">
                         <a href="<?php echo esc_url( home_url( '/comprar-por-objetivo' ) ); ?>">Comprar por Objetivo</a>
-                        <a href="<?php echo esc_url( home_url( '/product-category/alimentacion-consciente' ) ); ?>">Alimentación Consciente</a>
-                        <a href="<?php echo esc_url( home_url( '/product-category/bienestar-suplementacion' ) ); ?>">Bienestar &amp; Suplementación</a>
-                        <a href="<?php echo esc_url( home_url( '/product-category/cuidado-personal-limpio' ) ); ?>">Cuidado Personal Limpio</a>
+                        <a href="<?php echo esc_url( home_url( '/categoria-producto/alacena-consciente' ) ); ?>">Alacena Consciente</a>
+                        <a href="<?php echo esc_url( home_url( '/categoria-producto/bienestar-suplementacion' ) ); ?>">Bienestar &amp; Suplementación</a>
+                        <a href="<?php echo esc_url( home_url( '/categoria-producto/cuidado-personal' ) ); ?>">Cuidado Personal</a>
                         <a href="<?php echo esc_url( function_exists( 'wc_get_page_id' ) ? get_permalink( wc_get_page_id( 'shop' ) ) : home_url( '/tienda' ) ); ?>">Ver todo</a>
                     </div>
 

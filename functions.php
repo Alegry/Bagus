@@ -15,7 +15,7 @@ function bagus_child_enqueue_assets() {
     'preloader',
     'header',
     'hero', 'trust-bar', 'kit-teaser', 'shop-categories',
-    'manifiesto-resumen', 'programa-bridge', 'testimonials', 'blog',
+    'manifiesto-programa', 'testimonials', 'blog',
     'programa', 'manifiesto', 'contacto', 'blog-archive', 'blog-single',
     'footer',
     );
@@ -28,7 +28,7 @@ function bagus_child_enqueue_assets() {
     }
 
     // JS por sección
-    $js_files = array( 'preloader', 'header', 'hero', 'trust-bar', 'kit-teaser', 'shop-categories', 'manifiesto-resumen', 'programa-bridge', 'testimonials', 'blog', 'reveal' );
+    $js_files = array( 'preloader', 'header', 'hero', 'trust-bar', 'kit-teaser', 'shop-categories', 'manifiesto-programa', 'testimonials', 'blog', 'reveal' );
     foreach ( $js_files as $file ) {
         $path = "/js/{$file}.js";
         $full_path = get_stylesheet_directory() . $path;

@@ -1,0 +1,214 @@
+/* "Escenario" más alto que la pantalla: mientras se scrollea a través de */
+/* este espacio extra, la sección de adentro queda pegada (sticky) y ese  */
+/* scroll de más es lo que empuja la animación en vez de mover la página  */
+/* (mismo patrón que .kit-teaser-scroll-stage en kit-teaser.css).         */
+.manifiesto-programa-stage {
+    position: relative;
+    height: 360vh;
+}
+
+.bagus-manifiesto-programa {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.mp-bg-base {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(180deg, var(--color-sky) 0%, color-mix(in oklch, var(--color-sky) 75%, var(--color-text-dark)) 100%);
+}
+
+/* El rosa sube como una marea desde el borde inferior hasta cubrir el     */
+/* celeste; la banda del medio (18%) es la transición emplumada, no un     */
+/* corte recto (ver --mp-tide en js/manifiesto-programa.js). Termina en    */
+/* el mismo --color-pink-light sólido con el que arranca testimonials.css, */
+/* para que el cambio de sección no se note como una costura.              */
+.mp-bg-tide {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: var(--color-pink-light);
+    -webkit-mask-image: linear-gradient(to top, #000 0%, #000 var(--mp-tide, 0%), transparent calc(var(--mp-tide, 0%) + 18%));
+    mask-image: linear-gradient(to top, #000 0%, #000 var(--mp-tide, 0%), transparent calc(var(--mp-tide, 0%) + 18%));
+}
+
+.mp-content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    width: 100%;
+    justify-items: center;
+}
+
+/* Manifiesto y Programa ocupan la misma celda de grilla (superpuestos) */
+/* para que uno se desvanezca justo donde aparece el otro.              */
+.mp-layer {
+    grid-area: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    will-change: opacity, transform, filter;
+}
+
+/* font-family explícito acá (no alcanza con heredar el h2{font-family:      */
+/* var(--font-heading)} de global.css): esa regla es solo "h2" (un           */
+/* selector de elemento) y el theme padre Kadence trae su propia regla de    */
+/* fuente para headings con la misma especificidad que carga después,        */
+/* así que le gana — mismo problema que ya resolvimos con el logo y con      */
+/* .nav-dropdown, ver header.css.                                            */
+.mp-title {
+    font-family: var(--font-heading);
+    color: var(--color-white);
+    margin: 0 0 34px;
+}
+
+.mp-layer--manifiesto .mp-title {
+    font-size: clamp(48px, 6.8vw, 80px);
+}
+
+.mp-layer--programa .mp-title {
+    font-size: clamp(30px, 4.4vw, 52px);
+    max-width: 900px;
+    color: var(--color-white) !important;
+}
+
+.mp-title .letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(56px) scale(.55) rotate(14deg);
+    filter: blur(6px);
+    will-change: opacity, transform, filter;
+}
+
+.mp-title .letter.is-space {
+    width: .28em;
+}
+
+.mp-copy {
+    color: var(--color-white);
+    max-width: 700px;
+    margin: 0 0 32px;
+}
+
+.mp-layer--manifiesto .mp-copy {
+    font-family: var(--font-subheading);
+    font-size: clamp(26px, 3.4vw, 40px);
+    line-height: 1.35;
+}
+
+.mp-layer--programa .mp-copy {
+    font-family: var(--font-subheading);
+    font-size: clamp(20px, 2.4vw, 27px);
+}
+
+.mp-layer--manifiesto .mp-cta {
+    color: var(--color-white);
+    border-color: var(--color-white);
+}
+
+.mp-layer--programa .mp-cta {
+    background: var(--color-white);
+    color: var(--color-primary);
+}
+
+/* Estados de entrada de la frase y el botón del manifiesto: se arman      */
+/* letra por letra + estos dos, todo atado al progreso del scroll pineado  */
+/* (ver mapRange en el JS), no a IntersectionObserver como antes.          */
+.mp-layer--manifiesto .mp-copy {
+    opacity: var(--mp-quote-opacity, 0);
+    transform: translateY(var(--mp-quote-y, 40px));
+}
+
+.mp-layer--manifiesto .mp-cta {
+    opacity: var(--mp-btn-opacity, 0);
+    transform: scale(var(--mp-btn-scale, .7));
+}
+
+/* Salida del manifiesto / entrada del programa: todo el bloque se         */
+/* desenfoca y se achica/agranda como una sola unidad (ver --mp-m-... y     */
+/* --mp-p-... en el JS) — el glitch de letras (más abajo) pasa encima.      */
+.mp-layer--manifiesto {
+    opacity: var(--mp-m-opacity, 1);
+    filter: blur(var(--mp-m-blur, 0px));
+    transform: translateY(var(--mp-m-y, 0px)) scale(var(--mp-m-scale, 1));
+}
+
+.mp-layer--programa {
+    opacity: var(--mp-p-opacity, 0);
+    filter: blur(var(--mp-p-blur, 7px));
+    transform: translateY(var(--mp-p-y, 26px)) scale(var(--mp-p-scale, .94));
+}
+
+/* ---------- glitch de letras en el cruce ---------- */
+/* Ráfaga corta que se dispara una sola vez al cruzar el punto medio del  */
+/* scroll pineado, en cualquiera de los dos sentidos (ver triggerGlitch() */
+/* en el JS) — no es un loop continuo, es un golpe puntual en el cambio.  */
+@keyframes mp-letter-glitch {
+    0%   { transform: translate(0, 0); opacity: 1; text-shadow: none; }
+    8%   { transform: translate(-3px, 2px); opacity: .55; text-shadow: 2px 0 rgba(246, 183, 195, .85), -2px 0 rgba(157, 212, 219, .85); }
+    17%  { transform: translate(3px, -1px); opacity: 1; text-shadow: none; }
+    29%  { transform: translate(-2px, 1px); opacity: .6; text-shadow: -2px 0 rgba(246, 183, 195, .85), 2px 0 rgba(157, 212, 219, .85); }
+    41%  { transform: translate(0, 0); opacity: 1; text-shadow: none; }
+    58%  { transform: translate(2px, 1px); opacity: .7; text-shadow: 1px 0 rgba(246, 183, 195, .7); }
+    72%  { transform: translate(0, 0); opacity: 1; text-shadow: none; }
+    100% { transform: translate(0, 0); opacity: 1; text-shadow: none; }
+}
+
+.mp-title .letter.is-glitching {
+    animation: mp-letter-glitch .5s steps(1, end) both;
+    animation-delay: var(--gd, 0ms);
+}
+
+@media (max-width: 768px) {
+    .manifiesto-programa-stage {
+        height: 420vh;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .manifiesto-programa-stage {
+        height: auto;
+    }
+
+    .bagus-manifiesto-programa {
+        position: relative;
+        height: auto;
+        padding: 90px 0;
+    }
+
+    .mp-bg-base {
+        background: linear-gradient(180deg, var(--color-sky) 0%, var(--color-pink-light) 100%);
+    }
+
+    .mp-bg-tide {
+        display: none;
+    }
+
+    .mp-content {
+        display: flex;
+        flex-direction: column;
+        gap: 90px;
+    }
+
+    .mp-layer,
+    .mp-title .letter,
+    .mp-layer--manifiesto .mp-copy,
+    .mp-layer--manifiesto .mp-cta {
+        position: static;
+        opacity: 1 !important;
+        filter: none !important;
+        transform: none !important;
+    }
+
+    .mp-title .letter.is-glitching {
+        animation: none;
+        text-shadow: none;
+    }
+}

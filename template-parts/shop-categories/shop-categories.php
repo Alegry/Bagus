@@ -5,17 +5,17 @@
 
         <div class="shop-categories-grid">
 
-            <a class="shop-category-card" href="<?php echo esc_url( home_url( '/product-category/alimentacion-consciente' ) ); ?>">
+            <a class="shop-category-card" href="<?php echo esc_url( home_url( '/categoria-producto/alacena-consciente' ) ); ?>">
                 <span class="shop-category-image"><img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/Alimentacion-Consciente.jpeg' ); ?>" alt="" loading="lazy" decoding="async"></span>
-                <span class="shop-category-label"><span>Alimentación</span><span>Consciente</span></span>
+                <span class="shop-category-label"><span>Alacena</span><span>Consciente</span></span>
             </a>
 
-            <a class="shop-category-card" href="<?php echo esc_url( home_url( '/product-category/bienestar-suplementacion' ) ); ?>">
+            <a class="shop-category-card" href="<?php echo esc_url( home_url( '/categoria-producto/bienestar-suplementacion' ) ); ?>">
                 <span class="shop-category-image"><img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/Bienestar-y-Suplementacion.jpeg' ); ?>" alt="" loading="lazy" decoding="async"></span>
                 <span class="shop-category-label"><span>Bienestar y</span><span>Suplementación</span></span>
             </a>
 
-            <a class="shop-category-card" href="<?php echo esc_url( home_url( '/product-category/cuidado-personal-limpio' ) ); ?>">
+            <a class="shop-category-card" href="<?php echo esc_url( home_url( '/categoria-producto/cuidado-personal' ) ); ?>">
                 <span class="shop-category-image"><img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/Cuidado-Personal.jpeg' ); ?>" alt="" loading="lazy" decoding="async"></span>
                 <span class="shop-category-label"><span>Cuidado</span><span>Personal</span></span>
             </a>

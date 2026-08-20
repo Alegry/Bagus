@@ -33,7 +33,16 @@ HEADER
     justify-self: center;
 }
 
-.logo img {
+/* Prefijado con .header (no ".logo img" a secas) para ganarle en           */
+/* especificidad a ".woocommerce img, .woocommerce-page img" del theme      */
+/* padre Kadence (misma especificidad, pero carga después): sin este         */
+/* empate a favor nuestro, esa regla pisa el height:36px con height:auto,   */
+/* y como el SVG del logo declara width/height="100%" en su propio <svg>    */
+/* (ver assets/images/logo.svg), sin una altura fija el navegador no puede  */
+/* resolver su tamaño intrínseco y termina renderizando 0×0 — el logo       */
+/* "desaparece" en cualquier página con esas clases (tienda, categorías,    */
+/* producto).                                                               */
+.header .logo img {
     height: 36px;
     width: auto;
     display: block;
@@ -145,8 +154,16 @@ HEADER
 }
 
 /* DROPDOWN TIENDA */
+/* display:inline-flex + align-items:center (no solo position:relative):     */
+/* sin esto, este div no tiene font-size/line-height propios y hereda el     */
+/* line-height del body (bastante más alto que los 14px/line-height:1 del    */
+/* botón de adentro), quedando más alto que los <a> hermanos en .nav-left —  */
+/* eso corría "Tienda" unos px hacia abajo respecto de "Inicio". Con flex,   */
+/* este div se ajusta al alto real del botón y listo.                       */
 .nav-dropdown {
     position: relative;
+    display: inline-flex;
+    align-items: center;
 }
 
 .nav-dropdown-toggle {

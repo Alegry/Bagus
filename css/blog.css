@@ -17,7 +17,7 @@
     color: var(--color-text-dark);
     /* Estado inicial de la cascada atada al scroll (ver js/blog.js): cada   */
     /* tarjeta entra desde un lado distinto, no todas juntas ni con el       */
-    /* mismo wipe/enfoque que testimonials o programa-bridge.                */
+    /* mismo wipe/enfoque que testimonials o manifiesto-programa.            */
     opacity: 0;
     will-change: opacity, transform;
 }

@@ -4,6 +4,20 @@
 /* renderiza WooCommerce/Kadence por defecto, siguiendo la misma jerarquía */
 /* tipográfica y el mismo lenguaje de botón/hover del resto del sitio.     */
 
+/* Fondo blanco liso en tienda, categorías y ficha de producto, en vez del */
+/* degradado animado que usa el resto del sitio (ver .site-bg en           */
+/* global.css). WooCommerce agrega "woocommerce" al <body> exactamente en  */
+/* esas tres plantillas (is_woocommerce(): shop, taxonomía de producto y   */
+/* producto individual) y no en carrito/checkout/mi-cuenta, así que alcanza*/
+/* con esa única clase.                                                    */
+body.woocommerce {
+    background: var(--color-white);
+}
+
+body.woocommerce .site-bg {
+    display: none;
+}
+
 .woocommerce ul.products {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));

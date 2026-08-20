@@ -1,6 +1,6 @@
 /* Bloque de color en vez de blanco, continuando la narrativa cromática    */
-/* que arranca en manifiesto-resumen (sky) y baja a rosa en programa-      */
-/* bridge — y sin envolver las citas en cards: texto editorial directo     */
+/* que arranca en manifiesto-programa (sky) y baja a rosa hacia el final   */
+/* de esa sección — y sin envolver las citas en cards: texto editorial directo     */
 /* sobre el color, separado por una línea fina en vez de una caja.         */
 .bagus-testimonials {
     background: var(--color-pink-light);

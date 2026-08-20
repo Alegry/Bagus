@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function computeThreshold() {
         if (isHome) {
             // Sigue transparente/blanco a través de todo el home (hero, trust-bar,
-            // categorías, kit-teaser, manifiesto, programa-bridge, testimonials);
+            // categorías, kit-teaser, manifiesto-programa, testimonials);
             // recién al llegar a la sección del blog el header pasa a fondo blanco.
             var lightZoneEnd = document.querySelector('.bagus-blog-preview');
             if (lightZoneEnd) {

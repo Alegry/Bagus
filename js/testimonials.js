@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Cada columna se "descorre" como una cortina (clip-path) dentro de su
     // propia ventana de progreso, igual técnica que el trazo del preloader
-    // y el título de manifiesto-resumen — pero aplicada a un wipe vertical
+    // y el título de manifiesto-programa — pero aplicada a un wipe vertical
     // en vez de a letras, para que se sienta distinta a las otras secciones.
     var update = function () {
         var rect = section.getBoundingClientRect();
