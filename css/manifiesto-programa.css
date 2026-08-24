@@ -11,6 +11,17 @@
     position: sticky;
     top: 0;
     height: 100vh;
+    /* dvh (viewport dinámico, se actualiza en vivo con la barra de           */
+    /* direcciones) en vez de vh a secas: vh fijo usa el alto grande (barra   */
+    /* oculta) sin importar si la barra está puesta, así que cuando SÍ está   */
+    /* puesta esta sección pineada quedaba más baja que la pantalla real y    */
+    /* se veía un cuadro del fondo de la página asomando abajo. El salto al   */
+    /* mostrar/ocultar la barra ya no pasa porque el JS mide el alto real de  */
+    /* la sección en cada frame en vez de leer window.innerHeight aparte      */
+    /* (ver js/manifiesto-programa.js) — svh (fijo al mínimo) evitaba el      */
+    /* salto pero dejaba ese hueco siempre que la barra se ocultaba al        */
+    /* scrollear, que es justo cuando más se usa esta sección pineada.        */
+    height: 100dvh;
     overflow: hidden;
     isolation: isolate;
     display: flex;

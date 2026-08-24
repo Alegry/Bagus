@@ -144,6 +144,18 @@ HEADER
     right: 0;
 }
 
+/* Sin esto, un click (no solo el teclado) deja el outline azul nativo del  */
+/* navegador pegado en el botón — sobre todo notorio en "[ Menu ]" en       */
+/* mobile, que se queda ahí incluso después de cerrar el menú. El estilo    */
+/* de foco propio (más abajo) sigue mostrándose para navegación por         */
+/* teclado vía :focus-visible.                                              */
+.nav a,
+.nav-dropdown-toggle,
+.logo,
+.menu-toggle {
+    outline: none;
+}
+
 .nav a:focus-visible,
 .nav-dropdown-toggle:focus-visible,
 .logo:focus-visible,
@@ -257,10 +269,17 @@ HEADER
         position: fixed;
         inset: 0;
         z-index: 9998;
-        background: var(--color-primary);
+        /* Degradé rosa → blanco (nunca llega a blanco puro dentro de la      */
+        /* pantalla visible — el stop de 100% queda fuera, en 145%, para que */
+        /* el texto blanco siga siendo legible en todo el alto real).        */
+        background: linear-gradient(165deg, var(--color-primary) 0%, var(--color-pink-light) 65%, var(--color-white) 145%);
         flex-direction: column;
+        align-items: center;
         justify-content: center;
+        text-align: center;
         gap: 30px;
+        padding: 90px 24px 40px;
+        overflow-y: auto;
 
         opacity: 0;
         visibility: hidden;
@@ -292,12 +311,18 @@ HEADER
         align-items: center;
     }
 
+    /* !important porque le compite en especificidad a la regla de color      */
+    /* oscuro de arriba (:where(body:not(.home)) .header .nav-dropdown-toggle */
+    /* = dos clases) — sin esto "Tienda" quedaba oscuro en vez de blanco acá. */
     .nav-dropdown-toggle {
-        color: var(--color-white);
+        color: var(--color-white) !important;
         font-size: 19px;
         font-weight: 500;
     }
 
+    /* El submenú ya se ve siempre, sin necesidad de tocar "Tienda" antes    */
+    /* (a diferencia de escritorio, que sigue abriéndolo con el click — ver  */
+    /* header.js). "Tienda" es ahora un link directo a la tienda.            */
     .nav-dropdown-menu {
         position: static;
         align-items: center;
@@ -305,11 +330,21 @@ HEADER
         box-shadow: none;
         margin-top: 16px;
         gap: 16px;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
+        transition: none;
     }
 
     .nav-dropdown-menu a {
         color: var(--color-white) !important;
         padding: 0;
+    }
+
+    /* "Tienda" ya hace de "Ver todo" en mobile (link directo a la tienda). */
+    .nav-dropdown-viewall {
+        display: none;
     }
 
     .nav-dropdown-menu a::after {
@@ -329,6 +364,14 @@ HEADER
         justify-self: end;
         position: relative;
         z-index: 9999;
+    }
+
+    /* Sin esto, la página de atrás seguía scrolleando mientras el menú     */
+    /* (position:fixed) quedaba pegado a la pantalla — al scrollear con el  */
+    /* menú abierto se veía el footer de la página mezclado con los links   */
+    /* del menú. Ver toggle de esta clase en js/header.js.                  */
+    body.nav-open {
+        overflow: hidden;
     }
 }
 

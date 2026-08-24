@@ -21,6 +21,10 @@
     position: sticky;
     top: 0;
     height: 100vh;
+    /* Ver comentario equivalente en .bagus-manifiesto-programa              */
+    /* (css/manifiesto-programa.css): dvh evita que quede un hueco del fondo */
+    /* de la página abajo cuando la barra de direcciones de mobile se oculta.*/
+    height: 100dvh;
     overflow: hidden;
     isolation: isolate;
     display: flex;

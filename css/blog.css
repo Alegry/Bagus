@@ -1,6 +1,10 @@
 .bagus-blog-preview {
     background: var(--color-white);
     text-align: center;
+    /* Las tarjetas entran con translateX (ver js/blog.js): sin esto ese      */
+    /* desplazamiento sobresale del ancho de pantalla en mobile y genera      */
+    /* scroll horizontal en toda la página (mismo motivo que trust-bar.css).  */
+    overflow-x: hidden;
 }
 
 .blog-preview-grid {

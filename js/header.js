@@ -43,6 +43,9 @@ document.addEventListener('DOMContentLoaded', function () {
         menuToggle.addEventListener('click', function () {
             var isOpen = nav.classList.toggle('is-open');
             menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            // Bloquea el scroll de la página de atrás mientras el menú (fixed)
+            // está abierto — ver body.nav-open en header.css.
+            document.body.classList.toggle('nav-open', isOpen);
         });
     }
 
@@ -51,6 +54,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (dropdown && dropdownToggle) {
         dropdownToggle.addEventListener('click', function (e) {
+            // "Tienda" es un <a> a la tienda: en mobile navega directo (el
+            // submenú ya queda siempre visible ahí, ver header.css) y este
+            // toggle de abrir/cerrar es solo para el click de escritorio.
+            if (window.matchMedia('(max-width: 768px)').matches) {
+                return;
+            }
+            e.preventDefault();
             e.stopPropagation();
             var isOpen = dropdown.classList.toggle('is-open');
             dropdownToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');

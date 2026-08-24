@@ -1,3 +1,11 @@
+/* NO poner overflow-x:hidden acá (html/body): en mobile convierte a body   */
+/* en su propio contenedor de scroll, y ahí position:sticky (usado por      */
+/* .bagus-manifiesto-programa y .bagus-kit-teaser) deja de frenar — el      */
+/* scroll sigue de largo y la animación pineada nunca llega a verse. El     */
+/* overflow que causaba el espacio al costado se corta en el origen, en     */
+/* las secciones puntuales que animan con translateX (ver trust-bar.css,    */
+/* blog.css) — no acá.                                                      */
+
 body {
     font-family: var(--font-body);
 }

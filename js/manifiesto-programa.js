@@ -104,7 +104,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function update() {
         var rect = stage.getBoundingClientRect();
-        var vh = window.innerHeight;
+        // Alto de la sección pineada, no window.innerHeight: en mobile ese
+        // valor cambia solo con que la barra de direcciones aparezca o
+        // desaparezca durante el scroll, y ese cambio por sí solo movía
+        // "runway"/"progress" de golpe — la animación saltaba sin que el
+        // usuario siguiera scrolleando. El alto real de la sección (ahora
+        // en svh, ver css/manifiesto-programa.css) se mantiene estable.
+        var vh = section.getBoundingClientRect().height;
         var runway = rect.height - vh;
         var progress = runway > 0 ? clamp01(-rect.top / runway) : 0;
 

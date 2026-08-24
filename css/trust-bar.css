@@ -1,6 +1,10 @@
 .bagus-trust-bar {
     background: transparent; /* comparte el degradado de .site-bg con el hero y las categorías */
     padding: 64px 0 80px;
+    /* Los items entran con translateX(±56px) antes de is-visible (ver más   */
+    /* abajo): sin esto ese estado inicial sobresale del ancho de pantalla   */
+    /* en mobile y genera scroll horizontal en toda la página.               */
+    overflow-x: hidden;
 }
 
 .trust-bar-container {

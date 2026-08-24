@@ -19,7 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function update() {
         var rect = stage.getBoundingClientRect();
-        var vh = window.innerHeight;
+        // Alto de la sección pineada, no window.innerHeight: ver comentario
+        // equivalente en js/manifiesto-programa.js.
+        var vh = section.getBoundingClientRect().height;
         var runway = rect.height - vh;
 
         // progress = 0 mientras la sección todavía no llegó a quedar "pegada"

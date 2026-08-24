@@ -41,16 +41,21 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
                 <div class="nav-dropdown">
 
-                    <button class="nav-dropdown-toggle" aria-expanded="false">
+                    <?php $bagus_shop_url = esc_url( function_exists( 'wc_get_page_id' ) ? get_permalink( wc_get_page_id( 'shop' ) ) : home_url( '/tienda' ) ); ?>
+
+                    <!-- En desktop, click abre/cierra el submenú (ver header.js); en mobile   -->
+                    <!-- es un link directo a la tienda y el submenú ya queda siempre visible  -->
+                    <!-- debajo, sin necesidad de tocarlo antes (ver header.css).               -->
+                    <a href="<?php echo $bagus_shop_url; ?>" class="nav-dropdown-toggle" aria-expanded="false">
                         Tienda
-                    </button>
+                    </a>
 
                     <div class="nav-dropdown-menu">
                         <a href="<?php echo esc_url( home_url( '/comprar-por-objetivo' ) ); ?>">Comprar por Objetivo</a>
                         <a href="<?php echo esc_url( home_url( '/categoria-producto/alacena-consciente' ) ); ?>">Alacena Consciente</a>
                         <a href="<?php echo esc_url( home_url( '/categoria-producto/bienestar-suplementacion' ) ); ?>">Bienestar &amp; Suplementación</a>
                         <a href="<?php echo esc_url( home_url( '/categoria-producto/cuidado-personal' ) ); ?>">Cuidado Personal</a>
-                        <a href="<?php echo esc_url( function_exists( 'wc_get_page_id' ) ? get_permalink( wc_get_page_id( 'shop' ) ) : home_url( '/tienda' ) ); ?>">Ver todo</a>
+                        <a href="<?php echo $bagus_shop_url; ?>" class="nav-dropdown-viewall">Ver todo</a>
                     </div>
 
                 </div>
