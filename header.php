@@ -51,6 +51,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                     </a>
 
                     <div class="nav-dropdown-menu">
+                        <a href="<?php echo esc_url( home_url( '/kits-de-bienestar' ) ); ?>">Kits de Bienestar</a>
                         <a href="<?php echo esc_url( home_url( '/comprar-por-objetivo' ) ); ?>">Comprar por Objetivo</a>
                         <a href="<?php echo esc_url( home_url( '/categoria-producto/alacena-consciente' ) ); ?>">Alacena Consciente</a>
                         <a href="<?php echo esc_url( home_url( '/categoria-producto/bienestar-suplementacion' ) ); ?>">Bienestar &amp; Suplementación</a>

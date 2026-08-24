@@ -38,7 +38,7 @@ get_header();
 <?php if ( ! $bagus_programa_unlocked ) : ?>
 
     <!-- PRÓXIMAMENTE -->
-    <section class="programa-coming-soon">
+    <section class="bagus-coming-soon">
         <div class="container">
             <span class="page-hero-eyebrow">Programa BAGUS de Bioindividualidad</span>
             <h1 class="page-hero-title">Próximamente</h1>

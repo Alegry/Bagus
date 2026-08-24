@@ -1,5 +1,6 @@
-/* ==== PRÓXIMAMENTE (mientras el Programa no está activo) ==== */
-.programa-coming-soon {
+/* ==== PRÓXIMAMENTE (componente compartido por páginas aún no activas: ==== */
+/* Programa, Comprar por Objetivo, Kits de Bienestar) ======================= */
+.bagus-coming-soon {
     padding: 200px 0 120px;
     background: linear-gradient(180deg, var(--color-pink-light) 0%, var(--color-primary) 100%);
     text-align: center;
@@ -8,7 +9,7 @@
     align-items: center;
 }
 
-.programa-coming-soon .page-hero-eyebrow {
+.bagus-coming-soon .page-hero-eyebrow {
     display: inline-block;
     font-family: var(--font-body);
     font-size: 13px;
@@ -20,7 +21,7 @@
     margin-bottom: 20px;
 }
 
-.programa-coming-soon .page-hero-title {
+.bagus-coming-soon .page-hero-title {
     font-family: var(--font-heading) !important;
     font-weight: 400 !important;
     font-size: clamp(44px, 6vw, 76px);
@@ -28,7 +29,7 @@
     margin: 0 0 20px;
 }
 
-.programa-coming-soon .page-hero-subtitle {
+.bagus-coming-soon .page-hero-subtitle {
     font-family: var(--font-subheading);
     font-size: clamp(20px, 2.4vw, 28px);
     color: var(--color-white);
@@ -36,7 +37,7 @@
     margin: 0 auto 36px;
 }
 
-.programa-coming-soon .btn-outline {
+.bagus-coming-soon .btn-outline {
     color: var(--color-white);
     border-color: var(--color-white);
 }
@@ -110,7 +111,7 @@
 }
 
 @media (max-width: 640px) {
-    .programa-coming-soon {
+    .bagus-coming-soon {
         padding: 150px 0 90px;
     }
 }
