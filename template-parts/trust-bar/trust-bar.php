@@ -1,4 +1,7 @@
-<?php // Barra de Confianza — sin título visible, comparte fondo con hero y categorías ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+// Barra de Confianza — sin título visible, comparte fondo con hero y categorías
+?>
 <section class="bagus-trust-bar">
     <div class="container trust-bar-container">
 

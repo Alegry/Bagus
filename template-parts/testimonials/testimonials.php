@@ -1,3 +1,4 @@
+<?php if ( ! defined( 'ABSPATH' ) ) exit; ?>
 <section class="section bagus-testimonials">
     <div class="container">
 

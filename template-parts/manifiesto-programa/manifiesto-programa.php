@@ -1,3 +1,4 @@
+<?php if ( ! defined( 'ABSPATH' ) ) exit; ?>
 <div class="manifiesto-programa-stage">
     <section class="section bagus-manifiesto-programa">
 

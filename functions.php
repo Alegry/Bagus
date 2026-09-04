@@ -126,3 +126,66 @@ function bagus_register_blog_pillars() {
     }
 }
 add_action( 'init', 'bagus_register_blog_pillars', 21 );
+
+/**
+ * --- Endurecimiento de seguridad (auditoría 2026-09-04) ---
+ */
+
+/**
+ * Oculta /wp-json/wp/v2/users a visitantes no logueados: el endpoint expone
+ * el email del admin como "name" y is_super_admin. El editor de bloques y
+ * WooCommerce lo siguen viendo normal porque solo se filtra cuando
+ * is_user_logged_in() es false.
+ */
+function bagus_restrict_rest_users_endpoint( $endpoints ) {
+    if ( ! is_user_logged_in() ) {
+        foreach ( array( '/wp/v2/users', '/wp/v2/users/(?P<id>[\d]+)' ) as $route ) {
+            unset( $endpoints[ $route ] );
+        }
+    }
+    return $endpoints;
+}
+add_filter( 'rest_endpoints', 'bagus_restrict_rest_users_endpoint' );
+
+/**
+ * Mata las páginas públicas de autor (/author/{slug}/): confirman el
+ * username real y son un vector de enumeración.
+ */
+function bagus_disable_author_pages() {
+    if ( is_author() ) {
+        wp_safe_redirect( home_url(), 301 );
+        exit;
+    }
+}
+add_action( 'template_redirect', 'bagus_disable_author_pages' );
+
+/**
+ * Mensaje de login genérico: ya no se distingue "usuario no existe" de
+ * "contraseña incorrecta" (enumeración de usuarios vía wp-login.php).
+ */
+add_filter( 'login_errors', function () {
+    return 'Usuario o contraseña incorrectos.';
+} );
+
+// Desactiva XML-RPC (vector de fuerza bruta amplificada vía system.multicall).
+add_filter( 'xmlrpc_enabled', '__return_false' );
+
+// Oculta la versión exacta de WordPress (meta generator en <head>).
+remove_action( 'wp_head', 'wp_generator' );
+add_filter( 'the_generator', '__return_empty_string' );
+
+/**
+ * Cabeceras de seguridad HTTP básicas. No se agrega CSP estricta ni HSTS
+ * por código: hay que auditar antes todos los scripts externos del sitio
+ * (Google Fonts, GTM, WhatsApp, etc.) para no romper nada.
+ */
+function bagus_security_headers() {
+    if ( is_admin() ) {
+        return;
+    }
+    header( 'X-Frame-Options: SAMEORIGIN' );
+    header( 'X-Content-Type-Options: nosniff' );
+    header( 'Referrer-Policy: strict-origin-when-cross-origin' );
+    header( 'Permissions-Policy: geolocation=(), microphone=(), camera=()' );
+}
+add_action( 'send_headers', 'bagus_security_headers' );

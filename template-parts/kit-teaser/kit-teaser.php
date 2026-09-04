@@ -1,3 +1,4 @@
+<?php if ( ! defined( 'ABSPATH' ) ) exit; ?>
 <div class="kit-teaser-scroll-stage">
 
     <section class="section bagus-kit-teaser">
