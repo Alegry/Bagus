@@ -15,27 +15,17 @@
     gap: 24px;
 }
 
-.shop-category-card:nth-child(1) { --stagger: 0s; }
-.shop-category-card:nth-child(2) { --stagger: .12s; }
-.shop-category-card:nth-child(3) { --stagger: .24s; }
-.shop-category-card:nth-child(4) { --stagger: .36s; }
-
+/* El fade+slide de la tarjeta lo maneja GSAP/ScrollTrigger (ver              */
+/* js/shop-categories.js), no CSS: por eso no hay opacity/transform/         */
+/* transition acá — si se le pisara el "transform" por CSS mientras GSAP lo  */
+/* anima por JS, quedarían dos animaciones peleando por la misma propiedad.  */
+/* La opacidad por defecto en 1 además sirve de fallback si GSAP no carga.   */
 .shop-category-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 24px;
     text-decoration: none;
-    opacity: 0;
-    transform: translateY(48px);
-    transition:
-        opacity .8s cubic-bezier(.16, .84, .44, 1) var(--stagger, 0s),
-        transform .8s cubic-bezier(.16, .84, .44, 1) var(--stagger, 0s);
-}
-
-.shop-category-card.is-visible {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .shop-category-image {

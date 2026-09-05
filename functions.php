@@ -27,13 +27,26 @@ function bagus_child_enqueue_assets() {
         }
     }
 
+    // Librerías de animación (CDN): GSAP + ScrollTrigger para las animaciones
+    // fade+slide, Lenis para el scroll suave de todo el sitio.
+    wp_enqueue_script( 'gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js', array(), '3.12.5', true );
+    wp_enqueue_script( 'gsap-scrolltrigger', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js', array( 'gsap' ), '3.12.5', true );
+    wp_enqueue_script( 'lenis', 'https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js', array(), '1.1.14', true );
+
     // JS por sección
-    $js_files = array( 'preloader', 'header', 'hero', 'trust-bar', 'kit-teaser', 'shop-categories', 'manifiesto-programa', 'testimonials', 'blog', 'reveal' );
+    $js_files = array( 'smooth-scroll', 'preloader', 'header', 'hero', 'trust-bar', 'kit-teaser', 'shop-categories', 'manifiesto-programa', 'manifiesto', 'testimonials', 'blog', 'reveal' );
+    $gsap_deps = array( 'gsap', 'gsap-scrolltrigger', 'lenis' );
+    $js_deps = array(
+        'smooth-scroll'    => $gsap_deps,
+        'shop-categories'  => $gsap_deps,
+        'manifiesto'       => $gsap_deps,
+    );
     foreach ( $js_files as $file ) {
         $path = "/js/{$file}.js";
         $full_path = get_stylesheet_directory() . $path;
         if ( file_exists( $full_path ) ) {
-            wp_enqueue_script( "bagus-{$file}", $theme_uri . $path, array(), filemtime( $full_path ), true );
+            $deps = isset( $js_deps[ $file ] ) ? $js_deps[ $file ] : array();
+            wp_enqueue_script( "bagus-{$file}", $theme_uri . $path, $deps, filemtime( $full_path ), true );
         }
     }
 

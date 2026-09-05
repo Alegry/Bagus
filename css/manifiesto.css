@@ -36,19 +36,13 @@
     display: block;
 }
 
-/* Cada párrafo aparece por su cuenta a medida que entra en pantalla (ver  */
-/* .reveal / js/reveal.js) — más lento y con más recorrido que el .reveal  */
-/* genérico, para que se sienta pausado, acorde al tono del manifiesto.    */
-/* El :not(.is-visible) evita pisar el transform:translateY(0) final que   */
-/* pone .reveal.is-visible en global.css una vez que el párrafo ya entró.  */
-.manifiesto-full-title.reveal,
-.manifiesto-full-text .reveal {
-    transition-duration: 1.1s;
-}
-
-.manifiesto-full-title.reveal:not(.is-visible),
-.manifiesto-full-text .reveal:not(.is-visible) {
-    transform: translateY(46px);
+/* Cada bloque aparece por su cuenta a medida que entra en pantalla, con    */
+/* fade+slide animado por GSAP/ScrollTrigger (ver js/manifiesto.js) en vez  */
+/* del .reveal genérico (IntersectionObserver + CSS) que usa el resto del   */
+/* sitio — acá el recorrido es más largo y pausado, acorde al tono de la    */
+/* página. opacity:1 por defecto es el fallback si GSAP no llega a cargar.  */
+.gsap-reveal {
+    opacity: 1;
 }
 
 @media (max-width: 640px) {

@@ -31,6 +31,14 @@ body.woocommerce .site-bg {
     position: relative;
     margin: 0;
     text-align: left;
+    transition:
+        transform .3s cubic-bezier(.16, .84, .44, 1),
+        box-shadow .3s cubic-bezier(.16, .84, .44, 1);
+}
+
+.woocommerce ul.products li.product:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 34px rgba(43, 43, 43, .14);
 }
 
 .woocommerce ul.products li.product a {
@@ -146,9 +154,15 @@ body.woocommerce .site-bg {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .woocommerce ul.products li.product,
     .woocommerce ul.products li.product a img,
     .woocommerce ul.products li.product .button {
         transition: none;
+    }
+
+    .woocommerce ul.products li.product:hover {
+        transform: none;
+        box-shadow: none;
     }
 
     .woocommerce ul.products li.product:hover a img {
