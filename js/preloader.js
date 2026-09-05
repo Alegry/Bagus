@@ -31,11 +31,22 @@ document.addEventListener('DOMContentLoaded', function () {
 // qué tan rápido termine de cargar la página.
 var PRELOADER_MIN_VISIBLE = 3000;
 
+// Tope duro: el dibujo del logo depende de requestAnimationFrame, y una
+// pestaña que pierde el foco justo durante la carga (o una descarga lenta
+// del SVG) puede dejar ese loop sin correr — pase lo que pase, el preloader
+// no se queda tapando el sitio más de esto. setTimeout no depende de rAF,
+// así que corre igual aunque el dibujo se haya trabado.
+var PRELOADER_HARD_TIMEOUT = 8000;
+
 function initPreloaderMark() {
 
     var preloader = document.getElementById('site-preloader');
     var markHost = document.getElementById('site-preloader-mark');
     if (!preloader) return;
+
+    setTimeout(function () {
+        hidePreloader(preloader);
+    }, PRELOADER_HARD_TIMEOUT);
 
     if (!markHost || !markHost.getAttribute('data-src') || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         hidePreloaderWhenReady(preloader);
@@ -110,6 +121,10 @@ function runDrawAnimation(preloader, paths, lengths) {
     }
 
     function frame(now) {
+        // Si el tope duro (PRELOADER_HARD_TIMEOUT) ya lo ocultó, no sigue
+        // gastando frames en un elemento que ya se está por remover del DOM.
+        if (preloader.dataset.hidden) return;
+
         var elapsed = now - start;
         var finishing = loaded && elapsed >= PRELOADER_MIN_VISIBLE;
         var target = finishing ? 1 : CEILING * (1 - Math.exp(-elapsed / TAU));
@@ -146,6 +161,12 @@ function hidePreloaderWhenReady(preloader) {
 }
 
 function hidePreloader(preloader) {
+    // Idempotente a propósito: puede llegar a llamarse dos veces (el camino
+    // normal y el tope duro de PRELOADER_HARD_TIMEOUT de más arriba), y la
+    // segunda vez no debe hacer nada.
+    if (preloader.dataset.hidden) return;
+    preloader.dataset.hidden = '1';
+
     // Marca en <body> para que otras secciones (ver .hero-title/.hero-subtitle/
     // .hero-ctas en hero.css) puedan animar su entrada recién cuando el
     // preloader se va, en vez de jugarse esa animación mientras todavía está tapada.

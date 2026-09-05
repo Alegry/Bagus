@@ -28,17 +28,21 @@ document.addEventListener('DOMContentLoaded', function () {
         start: 'top 85%',
         once: true,
         onEnter: function (batch) {
+            // El reveal de la imagen (clip-path, ver shop-categories.css) se
+            // dispara para todo el batch de una sola vez acá, no adentro de
+            // un callback por-tarjeta del stagger de GSAP: ese callback no
+            // siempre llega a dispararse para cada tarjeta, y cuando fallaba
+            // la tarjeta quedaba en opacity:1 pero con la imagen tapada.
+            batch.forEach(function (card) {
+                card.classList.add('is-visible');
+            });
             gsap.to(batch, {
                 opacity: 1,
                 y: 0,
                 duration: .8,
                 ease: 'power3.out',
                 stagger: .12,
-                overwrite: true,
-                onStart: function () {
-                    // "this" es la tween individual de cada tarjeta dentro del stagger.
-                    this.targets()[0].classList.add('is-visible');
-                }
+                overwrite: true
             });
         }
     });
